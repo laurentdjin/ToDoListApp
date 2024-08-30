@@ -1,0 +1,45 @@
+name: CI
+
+env:
+    QT_QPA_PLATFORM: "offscreen"
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Check out repository
+      uses: actions/checkout@v2
+
+    - name: Set up Qt
+      uses: jurplel/install-qt-action@v4
+      with:
+        version: '6.5.1'
+        host: 'linux'
+        target: 'desktop'
+        setup-python: 'false'
+
+    - name: Install Dependencies
+      run: |
+        sudo apt install libxcb-xinerama0 libxkbcommon-x11-0
+        sudo apt-get install '^libxcb.*-dev' libx11-xcb-dev libglu1-mesa-dev libxrender-dev libxi-dev libxkbcommon-dev libxkbcommon-x11-dev
+
+    - name: Build Project
+      run: |
+        qmake -makefile
+        make
+
+    - name: Run QtQuick Tests
+      run: |
+        cd tests
+        qmake -makefile
+        make
+        make check  
