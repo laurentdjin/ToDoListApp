@@ -1,6 +1,9 @@
 import QtQuick 6.7
 import QtQuick.Controls 6.7
 import QtQuick.Layouts 6.7
+import QtQuick.Controls.Universal
+import QtQuick.Controls.Material
+import "."
 
 ApplicationWindow  {
     visible: true
@@ -36,6 +39,5 @@ ApplicationWindow  {
         popExit: Transition {
             NumberAnimation { property: "opacity"; from: 1; to: 0; duration: 200 }
         }
-
     }
 }

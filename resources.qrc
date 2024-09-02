@@ -8,5 +8,8 @@
         <file>pictures/Right_Arrow_Icon_Dark.svg</file>
         <file>pictures/Tasks_Icon.svg</file>
         <file>pictures/Theme_Icon.svg</file>
+        <file>pictures/LeftArrow_Icon.svg</file>
+        <file>pictures/Check_Icon.svg</file>
+        <file>pictures/LeftArrow_Icon_Dark.svg</file>
     </qresource>
 </RCC>
