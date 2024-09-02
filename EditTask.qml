@@ -35,7 +35,7 @@ Item {
                         border.color: Theme.secondaryColor
                         radius: Theme.radius
                     }
-
+                    enabled: !calendar.visible
                 }
             }
 
@@ -51,8 +51,9 @@ Item {
                 }
 
                 TextField {
-                    placeholderText: "dd/MM/yyyy"
+                    placeholderText: "MM/dd/yyyy"
                     placeholderTextColor: Theme.secondaryColor
+                    text: calendar.validSelectedDate.getTime() === new Date(0).getTime() ? "" : calendar.validSelectedDate.toLocaleDateString(Qt.locale("en_US"), Locale.ShortFormat)
                     color: Theme.foregroundColor
                     width: parent.width - 20
                     anchors.horizontalCenter: parent.horizontalCenter
@@ -61,7 +62,12 @@ Item {
                         border.color: Theme.secondaryColor
                         radius: Theme.radius
                     }
-
+                    MouseArea {
+                        anchors.fill: parent
+                        onClicked: {
+                            calendar.visible = true
+                        }
+                    }
                 }
             }
 
@@ -87,7 +93,7 @@ Item {
                         border.color: Theme.secondaryColor
                         radius: Theme.radius
                     }
-
+                    enabled: !calendar.visible
                 }
             }
 
@@ -117,6 +123,7 @@ Item {
                             radius: Theme.radius
                         }
                     }
+                    enabled: !calendar.visible
                 }
             }
 
@@ -133,7 +140,23 @@ Item {
                     text: "Add task"
                     horizontalAlignment: Text.AlignHCenter
                 }
+                enabled: !calendar.visible
             }
         }
+
+        Rectangle {
+            id: fog
+            anchors.fill: parent
+            visible: calendar.visible
+            color: Theme.secondaryColor
+            opacity: 0.8
+        }
+        CustomCalendar {
+            id: calendar
+            visible: false
+            anchors.horizontalCenter: parent.horizontalCenter
+            y : 20
+        }
+
     }
 }
