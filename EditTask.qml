@@ -1,9 +1,18 @@
 import QtQuick
 import QtQuick.Controls
 
-Item {
+Page {
     id: editTask
     anchors.fill: parent
+
+    header: CommonBar {
+        id: comBar
+
+        titleText: qsTr("Edit Task")
+        previousPageTitle: qsTr("Home")
+        acceptButton.visible: false
+    }
+
 
     Rectangle {
         anchors.fill: parent

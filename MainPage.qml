@@ -1,7 +1,7 @@
 import QtQuick
 import QtQuick.Controls 6.7
 
-Item {
+Page {
     width: 600
     height: 800
 
@@ -19,6 +19,15 @@ Item {
 
     ListModel {
         id: laterTaskModel
+    }
+
+
+    header: CommonBar {
+        id: comBar
+
+        titleText: qsTr("Tasks")
+        previousPageTitle: qsTr("Settings")
+        acceptButton.visible: false
     }
 
 

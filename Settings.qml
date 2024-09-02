@@ -1,7 +1,15 @@
 import QtQuick 6.7
 import QtQuick.Controls 6.7
 
-Item {
+Page {
+
+    header: CommonBar {
+        id: comBar
+
+        titleText: qsTr("Settings")
+        previousPageTitle: qsTr("Home")
+        acceptButton.visible: false
+    }
 
     ListView {
         width: parent.width
