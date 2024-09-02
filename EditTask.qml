@@ -13,6 +13,8 @@ Page {
         acceptButton.visible: false
     }
 
+    property alias backButton: comBar.backButton
+    backButton.onClicked: stackView.pop()
 
     Rectangle {
         anchors.fill: parent
@@ -21,6 +23,7 @@ Page {
         Column {
             anchors.fill: parent
             spacing: 15
+            topPadding: 15
 
             Column {
                 id: taskTitle
@@ -121,7 +124,7 @@ Page {
                 ScrollView {
                     width: parent.width - 20
                     anchors.horizontalCenter: parent.horizontalCenter
-                    height: editTask.height - taskTitle.height - taskDate.height - taskTime.height - addButton.height - 15*5 - notesLabel.height - taskNotes.spacing
+                    height: editTask.height - comBar.height - taskTitle.height - taskDate.height - taskTime.height - addButton.height - 15*6 - notesLabel.height - taskNotes.spacing
                     TextArea {
                         placeholderText: "empty"
                         placeholderTextColor: Theme.secondaryColor
@@ -166,13 +169,6 @@ Page {
             anchors.horizontalCenter: parent.horizontalCenter
             y : 20
         }
-    }
-    Button {
-        text: "Aller à la MainPage"
-        anchors.bottom: parent.bottom
-        anchors.horizontalCenter: parent.horizontalCenter
-        anchors.margins: 20
-        onClicked: stackView.pop()
     }
 }
 
