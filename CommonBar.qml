@@ -2,14 +2,40 @@ import QtQuick
 import QtQuick.Controls
 import "."
 
+/*
+  * @brief A custom ToolBar with a back button, title, and accept button.
+*/
 ToolBar {
     id: root
 
+    /*
+      * @brief The text displayed in the title label.
+    */
     property alias titleText: title.text
+
+    /*
+      * @brief Alias for the back button component.
+    */
     property alias backButton: backButton
+
+    /*
+      * @brief Alias for the accept button component.
+    */
     property alias acceptButton: acceptButton
+
+    /*
+      * @brief The text displayed on the back button.
+    */
     property alias previousPageTitle: backButton.text
+
+    /*
+      * @brief Controls the visibility of the accept button.
+    */
     property alias acceptButtonVisible: acceptButton.visible
+
+    /*
+      * @brief Back button for navigating to the previous page.
+    */
     ToolButton {
         id: backButton
         anchors.left: parent.left
@@ -20,6 +46,9 @@ ToolBar {
         palette.buttonText: Theme.foregroundColor
     }
 
+    /*
+      * @brief Title label displayed in the center of the toolbar.
+    */
     Label {
         id: title
         text: qsTr("Settings")
@@ -30,6 +59,9 @@ ToolBar {
         anchors.verticalCenter: parent.verticalCenter
     }
 
+    /*
+      * @brief Accept button for confirming actions, hidden by default.
+    */
     ToolButton {
         id: acceptButton
 
@@ -39,6 +71,4 @@ ToolBar {
         icon.source: "qrc:pictures/Check_Icon.svg"
         palette.button: Theme.primaryColor
     }
-
-
 }

@@ -18,7 +18,7 @@ Window {
         anchors.fill: parent
 
         //initialItem: SwitchTheme {}
-        //initialItem: FontSizeEdit {}
-        initialItem: MaxTasksEdit {}
+        initialItem: FontSizeEdit {}
+        //initialItem: MaxTasksEdit {}
     }
 }
