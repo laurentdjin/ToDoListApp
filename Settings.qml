@@ -14,6 +14,7 @@ Item {
                 name: qsTr("Theme")
                 page: "Theme"
                 iconSource: "qrc:/images/Theme_Icon.svg"
+                color: ""
             }
             ListElement {
                 name: qsTr("Remove completed tasks")
@@ -38,6 +39,7 @@ Item {
             text: model.name
             icon.source: model.iconSource
             icon.color: Theme.foregroundColor
+            palette.text: Theme.foregroundColor
 
             background: Rectangle {
                 color: Theme.backgroundColor
