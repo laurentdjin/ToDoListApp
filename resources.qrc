@@ -2,5 +2,11 @@
     <qresource prefix="/">
         <file>pictures/settings.png</file>
         <file>pictures/add.png</file>
+        <file>pictures/Font_Size_Icon.svg</file>
+        <file>pictures/Remove_Done_Icon.svg</file>
+        <file>pictures/Right_Arrow_Icon.svg</file>
+        <file>pictures/Right_Arrow_Icon_Dark.svg</file>
+        <file>pictures/Tasks_Icon.svg</file>
+        <file>pictures/Theme_Icon.svg</file>
     </qresource>
 </RCC>

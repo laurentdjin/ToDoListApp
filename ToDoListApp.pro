@@ -18,14 +18,3 @@ QML_DESIGNER_IMPORT_PATH =
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
-
-DISTFILES += \
-
-    EditTask.qml \
-    MainPage.qml \
-    Settings.qml \
-    images/Font_Size_Icon.svg \
-    images/Remove_Done_Icon.svg \
-    images/Tasks_Icon.svg \
-    images/Theme_Icon.svg
-

@@ -12,23 +12,23 @@ Item {
             ListElement {
                 name: qsTr("Theme")
                 page: "Theme"
-                iconSource: "qrc:/images/Theme_Icon.svg"
+                iconSource: "qrc:/pictures/Theme_Icon.svg"
                 color: ""
             }
             ListElement {
                 name: qsTr("Remove completed tasks")
                 page: "Tasks"
-                iconSource: "qrc:/images/Remove_Done_Icon.svg"
+                iconSource: "qrc:/pictures/Remove_Done_Icon.svg"
             }
             ListElement {
                 name: qsTr("Maximum number of tasks")
                 page: "MaxTasks"
-                iconSource: "qrc:/images/Tasks_Icon.svg"
+                iconSource: "qrc:/pictures/Tasks_Icon.svg"
             }
             ListElement {
                 name: qsTr("Font Size")
                 page: "FontSize"
-                iconSource: "qrc:/images/Font_Size_Icon.svg"
+                iconSource: "qrc:/pictures/Font_Size_Icon.svg"
             }
         }
 
@@ -45,7 +45,7 @@ Item {
             }
 
             Image {
-                source: Theme.lightTheme ? "qrc:/images/Right_Arrow_Icon_Dark.svg" : "qrc:/images/Right_Arrow_Icon.svg"
+                source: Theme.lightTheme ? "qrc:/pictures/Right_Arrow_Icon_Dark.svg" : "qrc:/pictures/Right_Arrow_Icon.svg"
                 width: 20
                 height: 20
                 anchors.right: parent.right
@@ -63,14 +63,12 @@ Item {
                 }
             }
         }
-
-        Button {
-            text: "Aller à la MainPage"
-            anchors.bottom: parent.bottom
-            anchors.horizontalCenter: parent.horizontalCenter
-            anchors.margins: 20
-            onClicked: stackView.pop()
-        }
     }
-
+    Button {
+        text: "Aller à la MainPage"
+        anchors.bottom: parent.bottom
+        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.margins: 20
+        onClicked: stackView.pop()
+    }
 }
