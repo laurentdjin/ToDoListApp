@@ -1,0 +1,10 @@
+<RCC>
+    <qresource prefix="/">
+        <file>images/Font_Size_Icon.svg</file>
+        <file>images/Remove_Done_Icon.svg</file>
+        <file>images/Tasks_Icon.svg</file>
+        <file>images/Theme_Icon.svg</file>
+        <file>images/Right_Arrow_Icon.svg</file>
+        <file>images/Right_Arrow_Icon_Dark.svg</file>
+    </qresource>
+</RCC>
