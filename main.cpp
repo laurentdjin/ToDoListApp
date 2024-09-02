@@ -7,6 +7,9 @@ int main(int argc, char *argv[])
 
     QQmlApplicationEngine engine;
     const QUrl url(QStringLiteral("qrc:/ToDoListApp/main.qml"));
+
+    qmlRegisterSingletonType(QUrl("qrc:/ToDoListApp/Theme.qml"), "Theme", 1, 0, "Theme");
+
     QObject::connect(
         &engine,
         &QQmlApplicationEngine::objectCreated,
