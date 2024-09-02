@@ -7,7 +7,6 @@ import "."
 
 ApplicationWindow  {
     visible: true
-
     width: 600
     height: 800
     title: "To-Do List App"

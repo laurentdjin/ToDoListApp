@@ -33,6 +33,8 @@ ToolBar {
     */
     property alias acceptButtonVisible: acceptButton.visible
 
+
+
     /*
       * @brief Back button for navigating to the previous page.
     */
