@@ -5,7 +5,8 @@ SOURCES += \
 
 resources.files = main.qml Theme.qml EditTask.qml
 resources.prefix = /$${TARGET}
-RESOURCES += resources
+RESOURCES += resources \
+    resources.qrc
 
 # Additional import path used to resolve QML modules in Qt Creator's code model
 QML_IMPORT_PATH =
