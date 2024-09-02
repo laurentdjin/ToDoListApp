@@ -3,7 +3,7 @@ QT += quick
 SOURCES += \
         main.cpp
 
-resources.files = main.qml Theme.qml EditTask.qml
+resources.files = main.qml Theme.qml EditTask.qml CustomCalendar.qml
 resources.prefix = /$${TARGET}
 RESOURCES += resources \
     resources.qrc
