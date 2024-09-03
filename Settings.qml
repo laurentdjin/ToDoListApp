@@ -13,34 +13,43 @@ Item {
                 name: qsTr("Theme")
                 page: "Theme"
                 iconSource: "qrc:/pictures/Theme_Icon.svg"
-                color: ""
+                textColor: "black"
             }
             ListElement {
                 name: qsTr("Remove completed tasks")
                 page: "Tasks"
                 iconSource: "qrc:/pictures/Remove_Done_Icon.svg"
+                textColor: "black"
             }
             ListElement {
                 name: qsTr("Maximum number of tasks")
                 page: "MaxTasks"
                 iconSource: "qrc:/pictures/Tasks_Icon.svg"
+                textColor: "black"
             }
             ListElement {
                 name: qsTr("Font Size")
                 page: "FontSize"
                 iconSource: "qrc:/pictures/Font_Size_Icon.svg"
+                textColor: "black"
             }
         }
 
         delegate: ItemDelegate {
             id: settingsItem
             width: parent.width
-            text: model.name
+
+            Text {
+                text: model.name
+                color: Theme.foregroundColor
+                anchors.centerIn: parent
+            }
+
             icon.source: model.iconSource
             icon.color: Theme.foregroundColor
-            palette.text: Theme.foregroundColor
 
             background: Rectangle {
+                id: rect
                 color: Theme.backgroundColor
             }
 
@@ -54,16 +63,37 @@ Item {
                 anchors.verticalCenter: parent.verticalCenter
             }
 
+            // MouseArea {
+            //     anchors.fill: parent
+            //     hoverEnabled: true
+            //     property bool hovered
+            //     onEntered: {hovered = true}
+            //     onExited: {hovered = false}
+            //     onClicked: {myListView.currentIndex = index}
+            // }
+
             Connections {
                 function onClicked() {
                     if (model.page === "Theme") {
                         console.log("Theme")
-                        stackView.push(Qt.resolvedUrl("OptionsTheme.qml"))
+                        stackView.push(Qt.resolvedUrl("SwitchTheme.qml"))
+                    } else if (model.page === "Tasks") {
+                        console.log("Tasks")
+                        stackView.push(Qt.resolvedUrl("RemoveTasks.qml"))
+                    } else if (model.page === "MaxTasks") {
+                        console.log("MaxTasks")
+                        stackView.push(Qt.resolvedUrl("MaxTasksEdit.qml"))
+                    } else if (model.page === "FontSize") {
+                        console.log("FontSize")
+                        stackView.push(Qt.resolvedUrl("FontSizeEdit.qml"))
                     }
                 }
             }
         }
+
+        ScrollIndicator.vertical: ScrollIndicator { }
     }
+
     Button {
         text: "Aller à la MainPage"
         anchors.bottom: parent.bottom
