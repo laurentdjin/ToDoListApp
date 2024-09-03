@@ -4,6 +4,7 @@ import QtQuick.Controls 6.7
 Item {
 
     ListView {
+        id: listView
         width: parent.width
         height: parent.height
 
@@ -38,6 +39,7 @@ Item {
         delegate: ItemDelegate {
             id: settingsItem
             width: parent.width
+            hoverEnabled: true
 
             Text {
                 text: model.name
@@ -51,6 +53,13 @@ Item {
             background: Rectangle {
                 id: rect
                 color: Theme.backgroundColor
+
+                MouseArea {
+                    anchors.fill: parent
+                    hoverEnabled: true
+                    onEntered: { parent.opacity = 0.7}
+                    onExited: { parent.opacity = 1.0}
+                }
             }
 
             Image {
@@ -63,14 +72,7 @@ Item {
                 anchors.verticalCenter: parent.verticalCenter
             }
 
-            // MouseArea {
-            //     anchors.fill: parent
-            //     hoverEnabled: true
-            //     property bool hovered
-            //     onEntered: {hovered = true}
-            //     onExited: {hovered = false}
-            //     onClicked: {myListView.currentIndex = index}
-            // }
+
 
             Connections {
                 function onClicked() {
