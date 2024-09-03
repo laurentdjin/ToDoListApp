@@ -51,6 +51,7 @@ Rectangle {
                 model: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
                 currentIndex: 0
                 anchors.verticalCenter: parent.verticalCenter
+                width : 6 * Theme.txtSize
                 background: Rectangle {
                     color: Theme.backgroundColor
                     border.color: Theme.secondaryColor
@@ -108,7 +109,7 @@ Rectangle {
                 id: selectedYear
                 model: fillYear(firstYear, lastYear)
                 currentIndex: 0
-                width: 50
+                width: 3 * Theme.txtSize
                 anchors.verticalCenter: parent.verticalCenter
                 background: Rectangle {
                     color: Theme.backgroundColor

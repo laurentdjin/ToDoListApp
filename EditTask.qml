@@ -281,6 +281,7 @@ Page {
                     TextArea {
                         placeholderText: "empty"
                         placeholderTextColor: Theme.secondaryColor
+                        font.pixelSize: Theme.txtSize
                         color: Theme.foregroundColor
                         background: Rectangle {
                             color: Theme.backgroundColor
