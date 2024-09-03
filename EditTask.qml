@@ -47,6 +47,7 @@ Page {
                         radius: Theme.radius
                     }
                     enabled: !calendar.visible
+                    maximumLength: 40
                 }
             }
 
