@@ -187,7 +187,9 @@ Rectangle {
                 onClicked: (date) => {
                     selectedDate = date
                     var currentDate = new Date()
-                    if((selectedDate.getFullYear() >= currentDate.getFullYear()) && (selectedDate.getMonth() >= currentDate.getMonth()) && (selectedDate.getDate() >= currentDate.getDate())) {
+                    // calculate the time in milliseconds to remove it from the current date and be able to select the current date in the calendar
+                    var timeMilliseconds = currentDate.getMinutes() * 3600000 + currentDate.getMinutes() * 60000 + currentDate.getMilliseconds()
+                    if (selectedDate.getTime() >= currentDate - timeMilliseconds) {
                         validDate = true
                     } else {
                         validDate = false
