@@ -1,7 +1,15 @@
 import QtQuick 6.7
 import QtQuick.Controls 6.7
 
-Item {
+Page {
+
+    header: CommonBar {
+        id: comBar
+
+        titleText: qsTr("Settings")
+        previousPageTitle: qsTr("Home")
+        acceptButton.visible: false
+    }
 
     /**
       * @brief List of all application options
@@ -80,7 +88,6 @@ Item {
                 anchors.verticalCenter: parent.verticalCenter
             }
 
-
             /**
               * @brief Function to access the various options on the Settings page
               */
@@ -101,9 +108,8 @@ Item {
                     }
                 }
             }
-        }
 
-        ScrollIndicator.vertical: ScrollIndicator { }
+        }
     }
 
     /**

@@ -1,7 +1,7 @@
 import QtQuick
 import QtQuick.Controls 6.7
 
-Item {
+Page {
     width: 600
     height: 800
 
@@ -22,37 +22,25 @@ Item {
     }
 
 
+    header: CommonBar {
+        id: comBar
+
+        backButton.visible: false
+        titleText: qsTr("Tasks")
+        previousPageTitle: qsTr("")
+        acceptButton.visible: true
+        acceptButton.icon.source: "qrc:/pictures/settings.png"
+        acceptButton.onClicked: stackView.push(Qt.resolvedUrl("Settings.qml"))
+        acceptButton.background: Rectangle {
+            radius: Theme.radius
+        }
+    }
+
+
     Column {
         anchors.fill: parent
         spacing: 10
         padding: 20
-
-        Row {
-            width: parent.width
-            height: 50
-
-            Text {
-                text: "Tasks"
-                font.pixelSize: 30
-                anchors.horizontalCenter: parent.horizontalCenter
-            }
-
-            /*
-             * @brief Settings Button
-             */
-            Button {
-                anchors.right: parent.right
-                anchors.rightMargin: 40
-                icon.source: "qrc:/pictures/settings.png"
-                width: 40
-                height: 40
-                onClicked: stackView.push(Qt.resolvedUrl("Settings.qml"))
-                background: Rectangle {
-                    radius: Theme.radius
-                }
-            }
-
-        }
 
         Row {
             spacing: 10

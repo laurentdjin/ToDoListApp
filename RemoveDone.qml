@@ -30,18 +30,12 @@ Page {
               * @brief Model containing the list elements for the settings.
             */
             model: ListModel {
-                ListElement { name: qsTr("Dark Mode") }
+                ListElement { name: qsTr("Remove Done Tasks") }
             }
 
-            /**
-             * @file exemple.h
-             * @brief Contient la déclaration de la classe Exemple
-             * @details La classe \c Exemple permet de montrer l'utilisation des \em tags \b Doxygen
-             * @author Thierry vaira <thierr.vaira@gmail.com>
-             * @version 0.1
-             * @date 2020
-             * @copyright GNU Public License.
-             */
+            /*
+              * @brief Delegate that defines how each item in the ListView is displayed.
+            */
             delegate: SwitchDelegate {
                 id: option
                 width: parent.width
@@ -49,9 +43,14 @@ Page {
                 checked: Theme.lightTheme
 
 
+                /*!
+                    \class Rectangleeeee
+                    \brief Signal handler for when the switch is clicked..
+
+                */
                 onClicked: {
-                    Theme.lightTheme = !Theme.lightTheme; // Toggle the theme
-                    console.log("lightmode--> " + Theme.lightTheme);
+                    Theme.removeDoneTasks = !Theme.removeDoneTasks; // Toggle the theme
+                    console.log("Remove Done--> " + Theme.removeDoneTasks);
                 }
 
                 /*!
@@ -84,7 +83,7 @@ Page {
     header: CommonBar {
         id: comBar
 
-        titleText: qsTr("Theme")
+        titleText: qsTr("Remove done")
         previousPageTitle: qsTr("Settings")
         acceptButton.visible: false
     }
@@ -92,5 +91,5 @@ Page {
     /*
       * @brief Signal handler for when the back button is clicked.
     */
-    backButton.onClicked: stackView.pop()
+    backButton.onClicked: themePage.stackView.pop()
 }

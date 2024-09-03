@@ -11,4 +11,5 @@ QtObject {
     readonly property double opacity : lightTheme ? 0.1 : 0.7
     property int txtSize : 16
     property int maxTasksNumber : 10
+    property bool removeDoneTasks: false
 }
