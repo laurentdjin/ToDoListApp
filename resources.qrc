@@ -13,5 +13,7 @@
         <file>pictures/LeftArrow_Icon_Dark.svg</file>
         <file>pictures/previous.png</file>
         <file>pictures/next.png</file>
+        <file>pictures/previous_dark.png</file>
+        <file>pictures/next_dark.png</file>
     </qresource>
 </RCC>
