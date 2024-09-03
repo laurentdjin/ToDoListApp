@@ -34,7 +34,7 @@ Rectangle {
 
             Image {
                 id: previousMonth
-                source: "qrc:/pictures/previous.png"
+                source: Theme.lightTheme ? "qrc:/pictures/previous.png" : "qrc:/pictures/previous_dark.png"
                 anchors.verticalCenter: parent.verticalCenter
                 MouseArea {
                     anchors.fill: parent
@@ -76,7 +76,7 @@ Rectangle {
             }
             Image {
                 id: nextMonth
-                source: "qrc:/pictures/next.png"
+                source: Theme.lightTheme ? "qrc:/pictures/next.png" : "qrc:/pictures/next_dark.png"
                 anchors.verticalCenter: parent.verticalCenter
                 MouseArea {
                     anchors.fill: parent
@@ -90,7 +90,7 @@ Rectangle {
 
             Image {
                 id: previousYear
-                source: "qrc:/pictures/previous.png"
+                source: Theme.lightTheme ? "qrc:/pictures/previous.png" : "qrc:/pictures/previous_dark.png"
                 anchors.verticalCenter: parent.verticalCenter
                 MouseArea {
                     anchors.fill: parent
@@ -134,7 +134,7 @@ Rectangle {
             }
             Image {
                 id: nextYear
-                source: "qrc:/pictures/next.png"
+                source: Theme.lightTheme ? "qrc:/pictures/next.png" : "qrc:/pictures/next_dark.png"
                 anchors.verticalCenter: parent.verticalCenter
                 MouseArea {
                     anchors.fill: parent
