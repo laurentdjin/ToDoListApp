@@ -94,7 +94,7 @@ Page {
     /*
       * @brief Signal handler for when the back button is clicked.
     */
-    backButton.onClicked: StackView.view.pop()
+    backButton.onClicked: stackView.pop()
 }
 
 
