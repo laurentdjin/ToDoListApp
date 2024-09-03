@@ -7,7 +7,9 @@ Item {
         id: listView
         width: parent.width
         height: parent.height
-
+        /**
+          * @brief The list of elements for each item on ListView
+          */
         model: ListModel {
             id: list
             ListElement {
@@ -62,6 +64,9 @@ Item {
                 }
             }
 
+            /**
+              * @brief 
+              */
             Image {
                 source: Theme.lightTheme ? "qrc:/pictures/Right_Arrow_Icon_Dark.svg" : "qrc:/pictures/Right_Arrow_Icon.svg"
                 width: 20
