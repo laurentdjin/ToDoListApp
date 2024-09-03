@@ -2,4 +2,3 @@ build/
 *.pro.user
 docs/
 Doxyfile
-README.md
