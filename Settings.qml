@@ -12,11 +12,16 @@ Page {
         backButton.onClicked: stackView.pop(null)
     }
 
+    /**
+      * @brief List of all application options
+      */
     ListView {
         id: listView
         width: parent.width
         height: parent.height
-
+        /**
+          * @brief The list of elements for each item on ListView
+          */
         model: ListModel {
             id: list
             ListElement {
@@ -66,11 +71,14 @@ Page {
                 MouseArea {
                     anchors.fill: parent
                     hoverEnabled: true
-                    onEntered: { parent.opacity = 0.7}
+                    onEntered: { parent.opacity = Theme.opacity}
                     onExited: { parent.opacity = 1.0}
                 }
             }
 
+            /**
+              * @brief Add arrow on item
+              */
             Image {
                 source: Theme.lightTheme ? "qrc:/pictures/Right_Arrow_Icon_Dark.svg" : "qrc:/pictures/Right_Arrow_Icon.svg"
                 width: 20
@@ -81,6 +89,9 @@ Page {
                 anchors.verticalCenter: parent.verticalCenter
             }
 
+            /**
+              * @brief Function to access the various options on the Settings page
+              */
             Connections {
                 function onClicked() {
                     if (model.page === "Theme") {
@@ -104,6 +115,9 @@ Page {
         }
     }
 
+    /**
+      * @brief Button to return on the main page
+      */
     Button {
         text: "Aller à la MainPage"
         anchors.bottom: parent.bottom

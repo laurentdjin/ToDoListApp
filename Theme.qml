@@ -2,12 +2,13 @@ pragma Singleton
 import QtQuick
 
 QtObject {
-    property bool lightTheme : false
+    property bool lightTheme : true
     readonly property color primaryColor: "green"
     readonly property color backgroundColor : lightTheme ? "ghostwhite" : "dimgrey"
     readonly property color secondaryColor: "dimgrey"
     readonly property color foregroundColor : lightTheme ? "black" : "lightgrey"
     readonly property int radius : 10
+    readonly property double opacity : lightTheme ? 0.1 : 0.7
     property int txtSize : 16
     property int maxTasksNumber : 10
     property bool removeDoneTasks: false
