@@ -62,14 +62,6 @@ Page {
                 anchors.verticalCenter: parent.verticalCenter
             }
 
-            Connections {
-                function onClicked() {
-                    if (model.page === "Theme") {
-                        console.log("Theme")
-                        stackView.push(Qt.resolvedUrl("OptionsTheme.qml"))
-                    }
-                }
-            }
         }
     }
     Button {

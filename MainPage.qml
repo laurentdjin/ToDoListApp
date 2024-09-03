@@ -31,6 +31,9 @@ Page {
         acceptButton.visible: true
         acceptButton.icon.source: "qrc:/pictures/settings.png"
         acceptButton.onClicked: stackView.push(Qt.resolvedUrl("Settings.qml"))
+        acceptButton.background: Rectangle {
+            radius: Theme.radius
+        }
     }
 
 

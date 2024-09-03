@@ -42,7 +42,7 @@ ToolBar {
         id: backButton
         anchors.left: parent.left
         anchors.leftMargin: 5
-        icon.source: Theme.lightTheme ? "pictures/LeftArrow_Icon_Dark.svg" : "qrc:pictures/LeftArrow_Icon.svg"
+        icon.source: Theme.lightTheme ? "qrc:pictures/LeftArrow_Icon.svg" : "pictures/LeftArrow_Icon_Dark.svg"
         text: qsTr("Tasks")
         palette.button: Theme.primaryColor
         palette.buttonText: Theme.foregroundColor

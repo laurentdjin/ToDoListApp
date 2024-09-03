@@ -2,7 +2,7 @@ pragma Singleton
 import QtQuick
 
 QtObject {
-    property bool lightTheme : false
+    property bool lightTheme : true
     readonly property color primaryColor: "green"
     readonly property color backgroundColor : lightTheme ? "ghostwhite" : "dimgrey"
     readonly property color secondaryColor: "dimgrey"
