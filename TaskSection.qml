@@ -54,7 +54,6 @@ Item {
             clip: true
         }
 
-        // Spacer to ensure sections do not overlap
         Rectangle {
             width: parent.width
             height: 10
