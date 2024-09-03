@@ -1,3 +1,8 @@
+/*! \file Page1.qml
+    \brief A Documented file.
+
+    Here is a brief description of the file contents
+*/
 import QtQuick
 import QtQuick.Controls 6.7
 

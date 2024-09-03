@@ -32,7 +32,7 @@ ApplicationWindow  {
         anchors.fill: parent
         initialItem: MainPage {}
 
-        // Transitions personnalisées (optionnelles)
+        //Transitions personnalisées (optionnelles)
         pushEnter: Transition {
             NumberAnimation { property: "opacity"; from: 0; to: 1; duration: 200 }
         }
