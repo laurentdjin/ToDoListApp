@@ -9,6 +9,7 @@ Page {
         titleText: qsTr("Settings")
         previousPageTitle: qsTr("Home")
         acceptButton.visible: false
+        backButton.onClicked: stackView.pop(null)
     }
 
     /**
@@ -96,10 +97,12 @@ Page {
                     if (model.page === "Theme") {
                         console.log("Theme")
                         stackView.push(Qt.resolvedUrl("SwitchTheme.qml"))
-                    } else if (model.page === "Tasks") {
-                        console.log("Tasks")
-                        stackView.push(Qt.resolvedUrl("RemoveTasks.qml"))
-                    } else if (model.page === "MaxTasks") {
+                    }
+                    // else if (model.page === "Tasks") {
+                    //     console.log("Tasks")
+                    //     stackView.push(Qt.resolvedUrl("RemoveTasks.qml"))
+                    // }
+                else if (model.page === "MaxTasks") {
                         console.log("MaxTasks")
                         stackView.push(Qt.resolvedUrl("MaxTasksEdit.qml"))
                     } else if (model.page === "FontSize") {
