@@ -31,12 +31,14 @@ Page {
 
                 Label {
                     text: "Title"
+                    font.pixelSize: Theme.txtSize
                     x: 10
                     color: Theme.primaryColor
                 }
 
                 TextField {
                     placeholderText: "Task name"
+                    font.pixelSize: Theme.txtSize
                     placeholderTextColor: Theme.secondaryColor
                     color: Theme.foregroundColor
                     width: parent.width - 20
@@ -58,6 +60,7 @@ Page {
 
                 Label {
                     text: "Due date"
+                    font.pixelSize: Theme.txtSize
                     x: 10
                     color: Theme.primaryColor
                 }
@@ -66,6 +69,7 @@ Page {
                     placeholderText: "MM/dd/yyyy"
                     placeholderTextColor: Theme.secondaryColor
                     text: calendar.validSelectedDate.getTime() === new Date(0).getTime() ? "" : calendar.validSelectedDate.toLocaleDateString(Qt.locale("en_US"), Locale.ShortFormat)
+                    font.pixelSize: Theme.txtSize
                     color: Theme.foregroundColor
                     width: parent.width - 20
                     anchors.horizontalCenter: parent.horizontalCenter
@@ -90,6 +94,7 @@ Page {
 
                 Label {
                     text: "Due time"
+                    font.pixelSize: Theme.txtSize
                     x: 10
                     color: Theme.primaryColor
                 }
@@ -111,6 +116,7 @@ Page {
                             id: am
                             checked: true
                             text: "AM"
+                            font.pixelSize: Theme.txtSize
                             enabled: !calendar.visible
                             indicator: Rectangle {
                                 implicitWidth: 13
@@ -141,6 +147,7 @@ Page {
                         RadioButton {
                             id: pm
                             text: "PM"
+                            font.pixelSize: Theme.txtSize
                             enabled: !calendar.visible
                             indicator: Rectangle {
                                 implicitWidth: 13
@@ -186,6 +193,7 @@ Page {
                             }
                             contentItem: Text {
                                 text: selectedHours.displayText
+                                font.pixelSize: Theme.txtSize
                                 color: Theme.foregroundColor
                             }
                             delegate: ItemDelegate {
@@ -193,6 +201,7 @@ Page {
                                 width: selectedHours.width
                                 contentItem: Text {
                                     text: modelData
+                                    font.pixelSize: Theme.txtSize
                                     color: Theme.foregroundColor
                                 }
                                 background: Rectangle {
@@ -204,6 +213,7 @@ Page {
 
                         Label {
                             text: ":"
+                            font.pixelSize: Theme.txtSize
                             color: Theme.foregroundColor
                             anchors.verticalCenter: parent.verticalCenter
                         }
@@ -230,6 +240,7 @@ Page {
                             }
                             contentItem: Text {
                                 text: selectedminutes.displayText
+                                font.pixelSize: Theme.txtSize
                                 color: Theme.foregroundColor
                             }
                             delegate: ItemDelegate {
@@ -237,6 +248,7 @@ Page {
                                 width: selectedminutes.width
                                 contentItem: Text {
                                     text: modelData
+                                    font.pixelSize: Theme.txtSize
                                     color: Theme.foregroundColor
                                 }
                                 background: Rectangle {
@@ -257,6 +269,7 @@ Page {
                 Label {
                     id: notesLabel
                     text: "Notes"
+                    font.pixelSize: Theme.txtSize
                     x: 10
                     color: Theme.primaryColor
                 }
@@ -290,6 +303,7 @@ Page {
                 contentItem: Text {
                     color: Theme.foregroundColor
                     text: "Add task"
+                    font.pixelSize: Theme.txtSize
                     horizontalAlignment: Text.AlignHCenter
                 }
                 enabled: !calendar.visible

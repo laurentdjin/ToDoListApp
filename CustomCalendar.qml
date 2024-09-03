@@ -4,8 +4,8 @@ import QtQuick.Controls
 
 
 Rectangle {
-    width : 300
-    height : 300
+    width : content.height
+    height : width
     color: Theme.backgroundColor
     radius: Theme.radius
 
@@ -27,6 +27,7 @@ Rectangle {
     Column {
         anchors.centerIn: parent
         spacing: 20
+        id: content
 
         Row {
             id: monthYear
@@ -59,6 +60,7 @@ Rectangle {
                 }
                 contentItem: Text {
                     text: selectedMonth.displayText
+                    font.pixelSize: Theme.txtSize
                     color: Theme.foregroundColor
                 }
                 delegate: ItemDelegate {
@@ -66,6 +68,7 @@ Rectangle {
                     width: selectedMonth.width
                     contentItem: Text {
                         text: modelData
+                        font.pixelSize: Theme.txtSize
                         color: Theme.foregroundColor
                     }
                     background: Rectangle {
@@ -116,6 +119,7 @@ Rectangle {
                 }
                 contentItem: Text {
                     text: selectedYear.displayText
+                    font.pixelSize: Theme.txtSize
                     color: Theme.foregroundColor
                 }
                 delegate: ItemDelegate {
@@ -123,6 +127,7 @@ Rectangle {
                     width: selectedYear.width
                     contentItem: Text {
                         text: modelData
+                        font.pixelSize: Theme.txtSize
                         color: Theme.foregroundColor
                     }
                     background: Rectangle {
@@ -155,6 +160,7 @@ Rectangle {
                 Layout.fillWidth: true
                 delegate: Text {
                     text: model.shortName
+                    font.pixelSize: Theme.txtSize
                     font.bold: true
                     horizontalAlignment: Text.AlignHCenter
                     verticalAlignment: Text.AlignVCenter
@@ -168,6 +174,7 @@ Rectangle {
                 year: selectedYear.currentText
                 locale: Qt.locale("en_US")
                 Layout.fillWidth: true
+                font.pixelSize: Theme.txtSize
                 delegate: Text {
                     opacity: month === gridCalendar.month ? 1 : 0.2
                     text: day
@@ -210,6 +217,7 @@ Rectangle {
                 contentItem: Text {
                     color: Theme.primaryColor
                     text: "Cancel"
+                    font.pixelSize: Theme.txtSize
                     horizontalAlignment: Text.AlignHCenter
                 }
                 onClicked: {
@@ -228,6 +236,7 @@ Rectangle {
                 contentItem: Text {
                     color: Theme.primaryColor
                     text: "Ok"
+                    font.pixelSize: Theme.txtSize
                     horizontalAlignment: Text.AlignHCenter
                     opacity: okButton.enabled ? 1 : 0.4
                 }
