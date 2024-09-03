@@ -11,10 +11,9 @@ Page {
         titleText: qsTr("Edit Task")
         previousPageTitle: qsTr("Home")
         acceptButton.visible: false
+        backButton.onClicked: stackView.pop()
     }
 
-    property alias backButton: comBar.backButton
-    backButton.onClicked: stackView.pop()
 
     Rectangle {
         anchors.fill: parent
