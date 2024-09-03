@@ -120,8 +120,6 @@ Page {
         }
     }
 
-
-
     /**
       * @brief Button to return on the main page
       */
