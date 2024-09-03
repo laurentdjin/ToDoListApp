@@ -10,4 +10,5 @@ QtObject {
     readonly property int radius : 10
     property int txtSize : 16
     property int maxTasksNumber : 10
+    property bool removeDoneTasks: false
 }

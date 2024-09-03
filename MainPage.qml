@@ -1,13 +1,30 @@
+/*! \file Page1.qml
+    \brief A Documented file.
+
+    Here is a brief description of the file contents
+*/
 import QtQuick
 import QtQuick.Controls 6.7
 
 Page {
-    width: 600
-    height: 800
+
+    id: pageid
 
     /**
-     @brief Models for today, this week, later task
-     */
+      *@brief function add a new task
+      */
+
+    function addTask() {
+        if (taskInput.text !== "") {
+            let currentDate = new Date().toLocaleDateString(Qt.locale("en_US"), Locale.LongFormat)
+            todayTaskModel.append({"task": taskInput.text, "completed": false, "date": currentDate})
+            taskInput.text = ""
+        }
+    }
+
+    /**
+      *@brief Models for today, this week, later task
+      */
 
     ListModel {
         id: todayTaskModel
@@ -21,15 +38,25 @@ Page {
         id: laterTaskModel
     }
 
+    /**
+      *@brief CommonBar used on the MainPage
+      */
 
     header: CommonBar {
         id: comBar
 
+        backButton.visible: false
         titleText: qsTr("Tasks")
-        previousPageTitle: qsTr("Settings")
-        acceptButton.visible: false
+        previousPageTitle: qsTr("")
+        acceptButton.visible: true
+        acceptButton.icon.source: "qrc:/pictures/settings.png"
+        acceptButton.onClicked: stackView.push(Qt.resolvedUrl("Settings.qml"))
+        // acceptButton.background: Rectangle {
+        //     radius: Theme.radius
+        // }
+        acceptButton.width: 26
+        acceptButton.height: 26
     }
-
 
     Column {
         anchors.fill: parent
@@ -37,37 +64,9 @@ Page {
         padding: 20
 
         Row {
-            width: parent.width
-            height: 50
-
-            Text {
-                text: "Tasks"
-                font.pixelSize: 30
-                anchors.horizontalCenter: parent.horizontalCenter
-            }
-
-            /*
-             * @brief Settings Button
-             */
-            Button {
-                anchors.right: parent.right
-                anchors.rightMargin: 40
-                icon.source: "qrc:/pictures/settings.png"
-                width: 40
-                height: 40
-                onClicked: stackView.push(Qt.resolvedUrl("Settings.qml"))
-                background: Rectangle {
-                    radius: Theme.radius
-                }
-            }
-
-        }
-
-        Row {
             spacing: 10
 
-
-            /*
+            /**
              * @brief this input allow user to add a new task
              * it will be added on today's task by default
              */
@@ -75,11 +74,12 @@ Page {
                 id: taskInput
                 placeholderText: "Add new task"
                 focus: true
-
+                font.pixelSize: Theme.txtSize
+                width: mainid.width - 150
+                maximumLength: 40
                 Keys.onPressed: (event) => {
                                     if ((event.key === Qt.Key_Enter || event.key === Qt.Key_Return) && taskInput.text !== "") {
-                                        todayTaskModel.append({"task": taskInput.text, "completed": false})
-                                        taskInput.text = ""
+                                        addTask()
                                     }
                                 }
                 background: Rectangle {
@@ -87,22 +87,20 @@ Page {
                 }
             }
 
-            /*
+            /**
              * @brief this button allow user to add a new task
              */
             Button {
                 text: "Add task"
-                onClicked:
-                    if (taskInput.text !== "")
-                    {todayTaskModel.append({"task": taskInput.text, "completed": false})
-                        taskInput.text = ""}
+                font.pixelSize: Theme.txtSize
+                onClicked: addTask()
                 background: Rectangle {
                     radius: Theme.radius
                 }
             }
         }
 
-        /*
+        /**
          * @brief Section Today
          */
         Column {
@@ -115,7 +113,16 @@ Page {
 
                 Text {
                     text: "Today"
-                    font.pixelSize: 18
+                    font.pixelSize: Theme.txtSize
+                    color: "blue"
+                }
+
+                /**
+                 * @brief counting the number of task in today's section
+                 */
+                Text {
+                    text: todayTaskModel.count
+                    font.pixelSize: Theme.txtSize
                     color: "blue"
                 }
 
@@ -130,11 +137,21 @@ Page {
                         isTodayExpanded = !isTodayExpanded
                     }
                 }
+
+                /**
+                 * @brief Shows current date, in US format
+                 */
+
+                Text {
+                    text: new Date().toLocaleDateString(Qt.locale("en_US"), Locale.LongFormat)
+                    font.pixelSize: Theme.txtSize
+                    color: "black"
+                }
             }
 
             ListView {
                 id: todayListView
-                width: parent.width
+                width: pageid.width
                 height: isTodayExpanded ? 150 : 0
                 model: todayTaskModel
                 delegate: Item {
@@ -152,17 +169,24 @@ Page {
 
                         Text {
                             text: model.task
-                            font.pixelSize: 14
+                            font.pixelSize: Theme.txtSize
                             color: model.completed ? "gray" : "black"
                             opacity: model.completed ? 0.5 : 1.0
+
+                            MouseArea {
+                                anchors.fill: parent
+                                hoverEnabled: true
+                                onEntered: { parent.opacity = 0.7}
+                                onExited: { parent.opacity = 1.0}
+                                onClicked: {stackView.push(Qt.resolvedUrl("EditTask.qml"))}
+                            }
                         }
                     }
                 }
                 clip: true
             }
 
-
-            /*
+            /**
              * @brief Section This Week
              */
             Column {
@@ -174,14 +198,22 @@ Page {
 
                     Text {
                         text: "This Week"
-                        font.pixelSize: 18
+                        font.pixelSize: Theme.txtSize
+                        color: "green"
+                    }
+
+                    /**
+                     * @brief counting the number of task in this week section
+                     */
+                    Text {
+                        text: thisWeekTaskModel.count
+                        font.pixelSize: Theme.txtSize
                         color: "green"
                     }
 
                     Button {
                         id: toggleButton2
                         background: white
-
                         text: isThisWeekExpanded ? "▲" : "▼"
                         width: 20
                         height: 20
@@ -189,12 +221,11 @@ Page {
                             isThisWeekExpanded = !isThisWeekExpanded
                         }
                     }
-
                 }
 
                 ListView {
                     id: thisWeekListView
-                    width: parent.width
+                    width: pageid.width
                     height: isThisWeekExpanded ? 150 : 0
                     model: thisWeekTaskModel
                     delegate: Item {
@@ -209,42 +240,58 @@ Page {
                                 checked: model.completed
                                 onCheckedChanged: model.completed = checked
                             }
-
                             Text {
                                 text: model.task
-                                font.pixelSize: 14
+                                font.pixelSize: Theme.txtSize
                                 color: model.completed ? "gray" : "black"
                                 opacity: model.completed ? 0.5 : 1.0
                             }
+                            Text {
+                                text: model.date
+                                font.pixelSize: Theme.txtSize
+                                color: "gray"
+                            }
+                        }
+                        MouseArea {
+                            anchors.fill: parent
+                            hoverEnabled: true
+                            onEntered: { parent.opacity = 0.7}
+                            onExited: { parent.opacity = 1.0}
+                            onClicked: {stackView.push(Qt.resolvedUrl("EditTask.qml"))}
                         }
                     }
                     clip: true
                 }
             }
 
-            /*
+            /**
              * @brief Section Later
              */
             Column {
                 spacing: 14
 
-
                 Row {
                     height: 20
                     spacing: 20
 
-
                     Text {
                         text: "Later"
-                        font.pixelSize: 18
+                        font.pixelSize: Theme.txtSize
                         color: "red"
                     }
 
+                    /**
+                     * @brief counting the number of task in later section
+                     */
+                    Text {
+                        text: laterTaskModel.count
+                        font.pixelSize: Theme.txtSize
+                        color: "red"
+                    }
 
                     Button {
                         id: toggleButton3
                         background: white
-
                         text: isLaterExpanded ? "▲" : "▼"
                         width: 20
                         height: 20
@@ -252,12 +299,11 @@ Page {
                             isLaterExpanded = !isLaterExpanded
                         }
                     }
-
                 }
 
                 ListView {
                     id: laterListView
-                    width: parent.width
+                    width: pageid.width
                     height: isLaterExpanded ? 150 : 0
                     model: laterTaskModel
                     delegate: Item {
@@ -275,10 +321,24 @@ Page {
 
                             Text {
                                 text: model.task
-                                font.pixelSize: 14
+                                font.pixelSize: Theme.txtSize
                                 color: model.completed ? "gray" : "black"
                                 opacity: model.completed ? 0.5 : 1.0
                             }
+
+                            Text {
+                                text: model.date
+                                font.pixelSize: Theme.txtSize
+                                color: "gray"
+                            }
+
+                        }
+                        MouseArea {
+                            anchors.fill: parent
+                            hoverEnabled: true
+                            onEntered: { parent.opacity = 0.7}
+                            onExited: { parent.opacity = 1.0}
+                            onClicked: {stackView.push(Qt.resolvedUrl("EditTask.qml"))}
                         }
                     }
                     clip: true
@@ -287,11 +347,14 @@ Page {
         }
     }
 
+    /**
+     * @brief bool allowing user to expand or not the listview
+     */
     property bool isTodayExpanded: true
     property bool isThisWeekExpanded: true
     property bool isLaterExpanded: true
 
-    /*
+    /**
      * @brief Button to access on EditionPage
      */
     Button {
@@ -300,8 +363,8 @@ Page {
         anchors.rightMargin: 20
         anchors.bottomMargin: 20
         icon.source: "qrc:/pictures/add.png"
-        width: 40
-        height: 40
+        width: 26
+        height: 26
         onClicked: stackView.push(Qt.resolvedUrl("EditTask.qml"))
         background: Rectangle {
             radius: Theme.radius

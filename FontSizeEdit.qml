@@ -58,14 +58,17 @@ Page {
 
             snapMode: Slider.SnapAlways
             stepSize: 1
-            from: 14
-            value: 15 // Initial font size
+            from: 10
+            value: Theme.txtSize  // Initial font size
             to: 21
 
             /*
               * @brief Updates the theme's text size as the slider is moved.
             */
-            onMoved: Theme.txtSize = value
+            onValueChanged: {
+                txt.text = value.toString(); // Update the TextField when slider moves
+                Theme.txtSize = value; // Update Theme.txtSize when slider changes
+            }
         }
 
         /*
@@ -80,21 +83,67 @@ Page {
     }
 
     /*
-      * @brief Text element that displays the current font size.
+      * @brief TextField for entering the font size.
     */
-    Text {
+    TextField {
         id: txt
-        text: Theme.txtSize
+        text: Theme.txtSize.toString() // Ensure the initial text is a string
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.top: sliderRow.bottom
         anchors.topMargin: 10
         font.pixelSize: Theme.txtSize
+        validator: IntValidator { bottom: 10; top: 21 } // Validator to restrict input
+
+        onTextEdited: {
+            var newValue = parseInt(txt.text);
+            if (!isNaN(newValue)) {
+                if (newValue >= slider.from && newValue <= slider.to) {
+                    slider.value = newValue;
+                    Theme.txtSize = newValue; // Update Theme.txtSize with the new value
+                } else {
+                    // Show popup if value is out of range
+                    invalidInputPopup.open();
+                }
+            }
+        }
     }
+
+    /*
+      * @brief Standard Popup to notify the user about invalid input.
+    */
+    Popup {
+        id: invalidInputPopup
+        width: 280
+        height: 120
+        modal: true
+        focus: true
+        closePolicy: Popup.CloseOnEscape
+
+        // Center the popup in the middle of the page
+        x: (fontPage.width - width) / 2
+        y: (fontPage.height - height) / 2
+
+
+            Label {
+                text: "Please enter a number between 10 and 21."
+                anchors.centerIn: parent
+                color: "black"
+                font.pixelSize: 14
+                horizontalAlignment: Text.AlignHCenter
+            }
+        }
+
+        // Automatically close the popup after a few seconds
+        Timer {
+            interval: 2000 // 2 seconds
+            running: invalidInputPopup.visible
+            repeat: false
+            onTriggered: invalidInputPopup.close()
+        }
 
     /*
       * @brief Signal handler for when the back button is clicked.
     */
-    backButton.onClicked: StackView.view.pop()
+    backButton.onClicked: stackView.pop()
 }
-
 
