@@ -4,7 +4,10 @@ import QtQuick.Controls
 
 
 Rectangle {
+    width : 300
+    height : 300
     color: Theme.backgroundColor
+    radius: Theme.radius
 
     readonly property int firstYear: 2024
     readonly property int lastYear: 2030
@@ -22,15 +25,17 @@ Rectangle {
     }
 
     Column {
+        anchors.centerIn: parent
         spacing: 20
-        anchors.horizontalCenter: parent.horizontalCenter
 
         Row {
+            id: monthYear
             anchors.horizontalCenter: parent.horizontalCenter
 
             Image {
                 id: previousMonth
                 source: "qrc:/pictures/previous.png"
+                anchors.verticalCenter: parent.verticalCenter
                 MouseArea {
                     anchors.fill: parent
                     onClicked: {
@@ -44,10 +49,35 @@ Rectangle {
                 id: selectedMonth
                 model: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
                 currentIndex: 0
+                anchors.verticalCenter: parent.verticalCenter
+                background: Rectangle {
+                    color: Theme.backgroundColor
+                    border.color: Theme.secondaryColor
+                    height: Theme.txtSize + 2
+                    anchors.verticalCenter: selectedMonth.verticalCenter
+                    radius: Theme.radius
+                }
+                contentItem: Text {
+                    text: selectedMonth.displayText
+                    color: Theme.foregroundColor
+                }
+                delegate: ItemDelegate {
+                    id: month
+                    width: selectedMonth.width
+                    contentItem: Text {
+                        text: modelData
+                        color: Theme.foregroundColor
+                    }
+                    background: Rectangle {
+                        color: month.highlighted ? Theme.primaryColor : Theme.backgroundColor
+                    }
+                    highlighted: selectedMonth.highlightedIndex === index
+                }
             }
             Image {
                 id: nextMonth
                 source: "qrc:/pictures/next.png"
+                anchors.verticalCenter: parent.verticalCenter
                 MouseArea {
                     anchors.fill: parent
                     onClicked: {
@@ -61,6 +91,7 @@ Rectangle {
             Image {
                 id: previousYear
                 source: "qrc:/pictures/previous.png"
+                anchors.verticalCenter: parent.verticalCenter
                 MouseArea {
                     anchors.fill: parent
                     onClicked: {
@@ -74,10 +105,37 @@ Rectangle {
                 id: selectedYear
                 model: fillYear(firstYear, lastYear)
                 currentIndex: 0
+                width: 50
+                anchors.verticalCenter: parent.verticalCenter
+                background: Rectangle {
+                    color: Theme.backgroundColor
+                    border.color: Theme.secondaryColor
+                    height: Theme.txtSize + 2
+                    anchors.verticalCenter: selectedYear.verticalCenter
+                    radius: Theme.radius
+                }
+                contentItem: Text {
+                    text: selectedYear.displayText
+                    color: Theme.foregroundColor
+                }
+                delegate: ItemDelegate {
+                    id: year
+                    width: selectedYear.width
+                    contentItem: Text {
+                        text: modelData
+                        color: Theme.foregroundColor
+                    }
+                    background: Rectangle {
+
+                        color: year.highlighted ? Theme.primaryColor : Theme.backgroundColor
+                    }
+                    highlighted: selectedYear.highlightedIndex === index
+                }
             }
             Image {
                 id: nextYear
                 source: "qrc:/pictures/next.png"
+                anchors.verticalCenter: parent.verticalCenter
                 MouseArea {
                     anchors.fill: parent
                     onClicked: {
@@ -92,13 +150,20 @@ Rectangle {
         ColumnLayout {
             anchors.horizontalCenter: parent.horizontalCenter
             DayOfWeekRow {
+                id: days
                 locale: gridCalendar.locale
                 Layout.fillWidth: true
+                delegate: Text {
+                    text: model.shortName
+                    font.bold: true
+                    horizontalAlignment: Text.AlignHCenter
+                    verticalAlignment: Text.AlignVCenter
+                    color: Theme.foregroundColor
+                }
             }
 
             MonthGrid {
                 id: gridCalendar
-
                 month: selectedMonth.currentIndex
                 year: selectedYear.currentText
                 locale: Qt.locale("en_US")
@@ -107,11 +172,13 @@ Rectangle {
                     opacity: month === gridCalendar.month ? 1 : 0.2
                     text: day
                     font: gridCalendar.font
+                    color: Theme.foregroundColor
+
                     Rectangle {
                         anchors.fill: parent
                         anchors.margins: -5
                         radius: 25
-                        color: validDate ? "blue" : "red"
+                        color: validDate ? Theme.primaryColor : "red"
                         opacity: 0.2
                         visible: selectedDate.getTime() === date.getTime()
                     }
@@ -133,14 +200,35 @@ Rectangle {
             anchors.horizontalCenter: parent.horizontalCenter
             spacing: 40
             Button {
-                text: "Cancel"
+                background: Rectangle {
+                    color: Theme.backgroundColor
+                    border.color: Theme.primaryColor
+                    radius: Theme.radius
+                }
+                contentItem: Text {
+                    color: Theme.primaryColor
+                    text: "Cancel"
+                    horizontalAlignment: Text.AlignHCenter
+                }
                 onClicked: {
                     calendar.visible = false
                 }
             }
             Button {
-                text: "Ok"
+                id: okButton
                 enabled: validDate
+                background: Rectangle {
+                    color: Theme.backgroundColor
+                    border.color: Theme.primaryColor
+                    radius: Theme.radius
+                    opacity: okButton.enabled ? 1 : 0.4
+                }
+                contentItem: Text {
+                    color: Theme.primaryColor
+                    text: "Ok"
+                    horizontalAlignment: Text.AlignHCenter
+                    opacity: okButton.enabled ? 1 : 0.4
+                }
                 onClicked: {
                     validSelectedDate = selectedDate
                     calendar.visible = false
