@@ -3,6 +3,7 @@ import QtQuick.Controls
 import "."
 
 ToolBar {
+
     id: root
 
     property alias titleText: title.text
@@ -24,7 +25,7 @@ ToolBar {
         id: backButton
         anchors.left: parent.left
         anchors.leftMargin: 5
-        icon.source: Theme.lightTheme ? "qrc:pictures/LeftArrow_Icon.svg" : "pictures/LeftArrow_Icon_Dark.svg"
+        icon.source: Theme.lightTheme ? "qrc:pictures/LeftArrow_Icon.svg" : "qrc:pictures/LeftArrow_Icon_Dark.svg"
         text: qsTr("Tasks")
         palette.button: Theme.primaryColor
         palette.buttonText: Theme.foregroundColor
@@ -42,6 +43,7 @@ ToolBar {
         color: Theme.foregroundColor
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.verticalCenter: parent.verticalCenter
+
     }
 
     ToolButton {

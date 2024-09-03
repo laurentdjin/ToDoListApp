@@ -6,6 +6,7 @@ import QtQuick.Controls.Material
 import "."
 
 ApplicationWindow  {
+    id: mainid
     visible: true
     width: 600
     height: 800
@@ -16,9 +17,9 @@ ApplicationWindow  {
      */
 
     minimumWidth: 600
-    maximumWidth: 600
+    //maximumWidth: 600
     minimumHeight: 800
-    maximumHeight: 800
+    //maximumHeight: 800
 
 
     /*
@@ -37,6 +38,14 @@ ApplicationWindow  {
         }
         popExit: Transition {
             NumberAnimation { property: "opacity"; from: 1; to: 0; duration: 200 }
+        }
+    }
+
+    function addTask() {
+        if (taskInput.text !== "") {
+            let currentDate = new Date().toLocaleDateString(Qt.locale("en_US"), Locale.LongFormat)
+            todayTaskModel.append({"task": taskInput.text, "completed": false, "date": currentDate})
+            taskInput.text = ""
         }
     }
 }
