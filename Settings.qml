@@ -12,6 +12,11 @@ Page {
         backButton.onClicked: stackView.pop(null)
     }
 
+    Rectangle {
+        anchors.centerIn: parent
+        color: Theme.backgroundColor
+    }
+
     /**
       * @brief List of all application options
       */
@@ -76,6 +81,7 @@ Page {
                 }
             }
 
+
             /**
               * @brief Add arrow on item
               */
@@ -113,6 +119,8 @@ Page {
             }
         }
     }
+
+
 
     /**
       * @brief Button to return on the main page
