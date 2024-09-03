@@ -5,21 +5,34 @@
 */
 import QtQuick
 import QtQuick.Controls 6.7
+import QtQuick.Dialogs 6.7
 
 Page {
 
     id: pageid
-
+    background: Rectangle {
+        id: rect
+        color: Theme.backgroundColor
+    }
     /**
       *@brief function add a new task
       */
 
     function addTask() {
-        if (taskInput.text !== "") {
+        if (taskInput.text !== "" && Theme.maxTasksNumber > todayTaskModel.count) {
             let currentDate = new Date().toLocaleDateString(Qt.locale("en_US"), Locale.LongFormat)
             todayTaskModel.append({"task": taskInput.text, "completed": false, "date": currentDate})
             taskInput.text = ""
         }
+    }
+
+
+   /**
+    *@brief Models for pop up when the task reach the limit
+    */
+
+    MessageDialog {
+        id: messageDialog
     }
 
     /**
@@ -81,6 +94,10 @@ Page {
                                     if ((event.key === Qt.Key_Enter || event.key === Qt.Key_Return) && taskInput.text !== "") {
                                         addTask()
                                     }
+                                    else if (Theme.maxTasksNumber <= todayTaskModel.count) {
+                                        messageDialog.title = "Warning"
+                                        messageDialog.text = "Max number of task achieved!"
+                                        messageDialog.open()}
                                 }
                 background: Rectangle {
                     radius: Theme.radius
@@ -114,7 +131,7 @@ Page {
                 Text {
                     text: "Today"
                     font.pixelSize: Theme.txtSize
-                    color: "blue"
+                    color: Theme.todayColor
                 }
 
                 /**
@@ -123,14 +140,16 @@ Page {
                 Text {
                     text: todayTaskModel.count
                     font.pixelSize: Theme.txtSize
-                    color: "blue"
+                    color: Theme.todayColor
                 }
 
                 Button {
                     id: toggleButton
-                    background: white
-
-                    text: isTodayExpanded ? "▲" : "▼"
+                    background: Rectangle{color:Theme.backgroundColor}
+                    contentItem: Text {
+                        color: Theme.foregroundColor
+                        text: isTodayExpanded ? "▲" : "▼"
+                    }
                     width: 20
                     height: 20
                     onClicked: {
@@ -145,7 +164,7 @@ Page {
                 Text {
                     text: new Date().toLocaleDateString(Qt.locale("en_US"), Locale.LongFormat)
                     font.pixelSize: Theme.txtSize
-                    color: "black"
+                    color: Theme.foregroundColor
                 }
             }
 
@@ -181,6 +200,13 @@ Page {
                                 onClicked: {stackView.push(Qt.resolvedUrl("EditTask.qml"))}
                             }
                         }
+
+                        // Text {
+                        //     text: todayListView.currentIndex
+                        //     font.pixelSize: Theme.txtSize
+                        // }
+
+
                     }
                 }
                 clip: true
@@ -199,7 +225,7 @@ Page {
                     Text {
                         text: "This Week"
                         font.pixelSize: Theme.txtSize
-                        color: "green"
+                        color: Theme.thisWeekColor
                     }
 
                     /**
@@ -208,13 +234,16 @@ Page {
                     Text {
                         text: thisWeekTaskModel.count
                         font.pixelSize: Theme.txtSize
-                        color: "green"
+                        color: Theme.thisWeekColor
                     }
 
                     Button {
                         id: toggleButton2
-                        background: white
-                        text: isThisWeekExpanded ? "▲" : "▼"
+                        background: Rectangle{color:Theme.backgroundColor}
+                        contentItem: Text {
+                            color: Theme.foregroundColor
+                            text: isThisWeekExpanded ? "▲" : "▼"
+                        }
                         width: 20
                         height: 20
                         onClicked: {
@@ -277,7 +306,7 @@ Page {
                     Text {
                         text: "Later"
                         font.pixelSize: Theme.txtSize
-                        color: "red"
+                        color: Theme.laterColor
                     }
 
                     /**
@@ -286,13 +315,16 @@ Page {
                     Text {
                         text: laterTaskModel.count
                         font.pixelSize: Theme.txtSize
-                        color: "red"
+                        color: Theme.laterColor
                     }
 
                     Button {
                         id: toggleButton3
-                        background: white
-                        text: isLaterExpanded ? "▲" : "▼"
+                        background: Rectangle{color:Theme.backgroundColor}
+                        contentItem: Text {
+                            color: Theme.foregroundColor
+                            text: isLaterExpanded ? "▲" : "▼"
+                        }
                         width: 20
                         height: 20
                         onClicked: {

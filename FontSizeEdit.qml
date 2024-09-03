@@ -1,3 +1,4 @@
+
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
@@ -95,6 +96,15 @@ Page {
         validator: IntValidator { bottom: 10; top: 21 } // Validator to restrict input
 
         onTextEdited: {
+            inputTimer.restart(); // Restart the timer whenever the text is edited
+        }
+    }
+
+    Timer {
+        id: inputTimer
+        interval: 1500 // 500 ms delay to simulate "finished" typing
+        repeat: false
+        onTriggered: {
             var newValue = parseInt(txt.text);
             if (!isNaN(newValue)) {
                 if (newValue >= slider.from && newValue <= slider.to) {
@@ -123,6 +133,11 @@ Page {
         x: (fontPage.width - width) / 2
         y: (fontPage.height - height) / 2
 
+        Rectangle {
+            anchors.fill: parent
+            color: "lightgray" // Change background to light gray
+            border.color: "darkgray"
+            radius: 10
 
             Label {
                 text: "Please enter a number between 10 and 21."
@@ -140,10 +155,10 @@ Page {
             repeat: false
             onTriggered: invalidInputPopup.close()
         }
+    }
 
     /*
       * @brief Signal handler for when the back button is clicked.
     */
     backButton.onClicked: stackView.pop()
 }
-
