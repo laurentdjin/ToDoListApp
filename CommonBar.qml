@@ -25,10 +25,10 @@ ToolBar {
         id: backButton
         anchors.left: parent.left
         anchors.leftMargin: 5
-        icon.source: Theme.lightTheme ? "qrc:pictures/LeftArrow_Icon.svg" : "qrc:pictures/LeftArrow_Icon_Dark.svg"
+        icon.source: "qrc:pictures/LeftArrow_Icon_Dark.svg"
         text: qsTr("Tasks")
         palette.button: Theme.primaryColor
-        palette.buttonText: Theme.foregroundColor
+        palette.buttonText: "black"
         palette.highlight: Theme.lightTheme? "#30DB5B" : "#248A3D"
     }
 
@@ -40,10 +40,9 @@ ToolBar {
         text: qsTr("Settings")
         font.pixelSize: Theme.txtSize
         horizontalAlignment: Text.AlignHCenter
-        color: Theme.foregroundColor
+        color: "black"
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.verticalCenter: parent.verticalCenter
-
     }
 
     ToolButton {

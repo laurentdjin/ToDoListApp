@@ -60,7 +60,7 @@ Page {
                     */
                     Text {
                         text: model.name
-                        color: Theme.foregroundColor
+                        color: "black"
                         Layout.alignment: Qt.AlignLeft
                         anchors.verticalCenter: parent.verticalCenter
                     }
