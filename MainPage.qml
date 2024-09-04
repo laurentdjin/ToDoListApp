@@ -258,7 +258,7 @@ Page {
                                 hoverEnabled: true
                                 onEntered: { parent.opacity = 0.7}
                                 onExited: { parent.opacity = 1.0}
-                                onClicked: {stackView.push(Qt.resolvedUrl("EditTask.qml"))}
+                                onClicked: {stackView.push(Qt.resolvedUrl("EditTask.qml"), {edit: true, editTitle: model.task, editDate: model.date, editNotes: model.notes})}
                             }
                         }
 
@@ -358,7 +358,7 @@ Page {
                             hoverEnabled: true
                             onEntered: { parent.opacity = 0.7}
                             onExited: { parent.opacity = 1.0}
-                            onClicked: {stackView.push(Qt.resolvedUrl("EditTask.qml"))}
+                            onClicked: {stackView.push(Qt.resolvedUrl("EditTask.qml"), {edit: true, editTitle: model.task, editDate: model.date, editNotes: model.notes})}
                         }
                     }
                     clip: true
@@ -448,7 +448,7 @@ Page {
                             hoverEnabled: true
                             onEntered: { parent.opacity = 0.7}
                             onExited: { parent.opacity = 1.0}
-                            onClicked: {stackView.push(Qt.resolvedUrl("EditTask.qml"))}
+                            onClicked: {stackView.push(Qt.resolvedUrl("EditTask.qml"), {edit: true, editTitle: model.task, editDate: model.date, editNotes: model.notes})}
                         }
                     }
                     clip: true

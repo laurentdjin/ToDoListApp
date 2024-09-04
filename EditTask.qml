@@ -16,6 +16,11 @@ Page {
 
     signal exit(var title, var date, var notes)
 
+    property bool edit: false
+    property string editTitle: ""
+    property date editDate
+    property string editNotes: ""
+
     Rectangle {
         anchors.fill: parent
         color: Theme.backgroundColor
@@ -40,6 +45,7 @@ Page {
                 TextField {
                     id: title
                     placeholderText: "Task name"
+                    text: edit ? editTitle : ""
                     font.pixelSize: Theme.txtSize
                     placeholderTextColor: Theme.secondaryColor
                     color: Theme.foregroundColor
@@ -70,7 +76,7 @@ Page {
                 TextField {
                     placeholderText: "MM/dd/yyyy"
                     placeholderTextColor: Theme.secondaryColor
-                    text: calendar.validSelectedDate.getTime() === new Date(0).getTime() ? "" : calendar.validSelectedDate.toLocaleDateString(Qt.locale("en_US"), Locale.ShortFormat)
+                    text: edit ? editDate.toLocaleDateString(Qt.locale("en_US"), Locale.ShortFormat) : (calendar.validSelectedDate.getTime() === new Date(0).getTime() ? "" : calendar.validSelectedDate.toLocaleDateString(Qt.locale("en_US"), Locale.ShortFormat))
                     font.pixelSize: Theme.txtSize
                     color: Theme.foregroundColor
                     width: parent.width - 20
@@ -285,6 +291,7 @@ Page {
                         wrapMode: TextInput.Wrap
                         placeholderText: "empty"
                         placeholderTextColor: Theme.secondaryColor
+                        text: edit ? editNotes : ""
                         font.pixelSize: Theme.txtSize
                         color: Theme.foregroundColor
                         background: Rectangle {
