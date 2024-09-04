@@ -119,6 +119,9 @@ Page {
                                     if ((event.key === Qt.Key_Enter || event.key === Qt.Key_Return) && taskInput.text !== "") {
                                         addTask()
                                     }
+                                    /**
+                                     * @brief if the number of task is reached then user will see a pop up
+                                     */
                                     else if (Theme.maxTasksNumber <= todayTaskModel.count) {
                                         messageDialog.title = "Warning"
                                         messageDialog.text = "Max number of task achieved!"
@@ -157,13 +160,10 @@ Page {
          */
         Column {
             spacing: 10
-
             /**
              * @brief Section Today
              */
             Button {
-                anchors.right: parent.right
-                anchors.rightMargin: 50
                 text: "Clear completed tasks"
                 font.pixelSize: Theme.txtSize
                 background: Rectangle {
@@ -219,6 +219,9 @@ Page {
                     color: Theme.todayColor
                 }
 
+                /**
+                 * @brief this button allow user to expand or reduce the today's section
+                 */
                 Button {
                     id: toggleButton
                     background: Rectangle{color:Theme.backgroundColor}
@@ -261,7 +264,6 @@ Page {
                             checked: model.completed
                             onCheckedChanged: model.completed = checked
                         }
-
                         Text {
                             text: model.task
                             font.pixelSize: Theme.txtSize
@@ -434,6 +436,12 @@ Page {
                                 font.pixelSize: Theme.txtSize
                                 color: Theme.foregroundColor
                                 opacity: model.completed ? 0.5 : 1.0
+
+                                MouseArea {
+                                    anchors.fill: parent
+                                    hoverEnabled: true
+                                    onClicked: {stackView.push(Qt.resolvedUrl("EditTask.qml"), {edit: true, editTitle: model.task, editDate: model.date, editNotes: model.notes})}
+                                }
                             }
 
                             Text {
@@ -446,12 +454,6 @@ Page {
                                 text: model.date.toLocaleTimeString(Qt.locale("en_US"), Locale.ShortFormat)
                                 font.pixelSize: Theme.txtSize
                                 color: "gray"
-
-                                MouseArea {
-                                    anchors.fill: parent
-                                    hoverEnabled: true
-                                    onClicked: {stackView.push(Qt.resolvedUrl("EditTask.qml"), {edit: true, editTitle: model.task, editDate: model.date, editNotes: model.notes})}
-                                }
                             }
 
                         }
