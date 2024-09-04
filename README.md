@@ -34,6 +34,10 @@ Qt Version: 6.7.2
 
 ### Project Management
 - Link to JIRA -> [jira](https://laurentjin.atlassian.net/jira/software/c/projects/TODO/boards/7)
+1- Class Diagram  
+![UML](screen/jira1.png)
+2- Use Case Diagram  
+![USECASE](screen/jira2.png)
 ### Quick Overview
 1- Class Diagram  
 ![UML](screen/ClassDiagram.png)
