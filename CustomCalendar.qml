@@ -188,17 +188,19 @@ Rectangle {
                         radius: 25
                         color: validDate ? Theme.primaryColor : "red"
                         opacity: 0.2
-                        visible: selectedDate.getTime() === date.getTime()
+                        visible: selectedDate.setHours(0, 0, 0, 0) === date.setHours(0, 0, 0, 0) // compare dates without times
                     }
                 }
 
                 onClicked: (date) => {
                     selectedDate = date
                     var currentDate = new Date()
-                    // calculate the time in milliseconds to remove it from the current date and be able to select the current date in the calendar
-                    var timeMilliseconds = currentDate.getHours() * 3600000 + currentDate.getMinutes() * 60000 + currentDate.getMilliseconds()
-                    currentDate.setTime(currentDate.getTime() - timeMilliseconds)
-                    if (selectedDate.getTime() >= currentDate.getTime()) {
+
+                    // remove time from dates to compare them
+                    currentDate.setTime(currentDate.setHours(0, 0, 0, 0))
+                    selectedDate.setTime(selectedDate.setHours(0, 0, 0, 0))
+
+                    if (selectedDate >= currentDate) {
                         validDate = true
                     } else {
                         validDate = false
