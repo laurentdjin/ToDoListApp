@@ -27,47 +27,51 @@ Page {
         acceptButton.visible: false
     }
 
-    /*
+    Rectangle {
+        anchors.fill: parent
+        color: Theme.backgroundColor
+
+        /*
       * @brief Layout containing the label and spinbox for setting max tasks.
     */
-    ColumnLayout {
-        width: parent.width
-
-        /*
-          * @brief Label instructing the user to choose the max tasks number.
-        */
-        Label {
-            id: maxTasksText
-
-            color: Theme.primaryColor
-            horizontalAlignment: Text.AlignHCenter
-            wrapMode: Text.Wrap
-            text: qsTr("Please choose the Max tasks number.")
-            font.pixelSize: Theme.txtSize
-
-            Layout.fillWidth: true
-        }
-
-        /*
-          * @brief SpinBox for selecting the maximum number of tasks.
-        */
-        SpinBox {
-            id: maxTasksSpinbox
-            editable: true
-            from: 5
-            value: Theme.maxTasksNumber
-            to: 50
-
-            Layout.alignment: Qt.AlignHCenter
-            Layout.topMargin: 10
+        ColumnLayout {
+            width: parent.width
 
             /*
+          * @brief Label instructing the user to choose the max tasks number.
+        */
+            Label {
+                id: maxTasksText
+
+                color: Theme.primaryColor
+                horizontalAlignment: Text.AlignHCenter
+                wrapMode: Text.Wrap
+                text: qsTr("Please choose the Max tasks number.")
+                font.pixelSize: Theme.txtSize
+
+                Layout.fillWidth: true
+            }
+
+            /*
+          * @brief SpinBox for selecting the maximum number of tasks.
+        */
+            SpinBox {
+                id: maxTasksSpinbox
+                editable: true
+                from: 5
+                value: Theme.maxTasksNumber
+                to: 50
+
+                Layout.alignment: Qt.AlignHCenter
+                Layout.topMargin: 10
+
+                /*
               * @brief Updates the theme's max tasks number as the spinbox value changes.
             */
-            onValueChanged: Theme.maxTasksNumber = maxTasksSpinbox.value
+                onValueChanged: Theme.maxTasksNumber = maxTasksSpinbox.value
+            }
         }
     }
-
     /*
       * @brief Signal handler for when the back button is clicked.
     */
