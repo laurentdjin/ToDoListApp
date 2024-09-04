@@ -1,6 +1,8 @@
-/*
-  * @brief The ThemeSwitcherPage allows users to toggle between light and dark themes.
+/*!
+  \file RemoveDone.qml
+  \brief The RemoveDone allows users to toggle the option of deleting all completed tasks.
 */
+
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts

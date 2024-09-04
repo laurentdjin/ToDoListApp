@@ -1,6 +1,8 @@
-/*
-  * @brief The ThemeSwitcherPage allows users to toggle between light and dark themes.
+/*!
+  \file SwitchTheme.qml
+  \brief The ThemeSwitcherPage allows users to toggle between light and dark themes.
 */
+
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts

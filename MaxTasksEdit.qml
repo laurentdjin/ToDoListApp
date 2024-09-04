@@ -1,11 +1,13 @@
+/*!
+   \file MaxTasksEdit.qml
+   \brief The maxtasks page allows users to set the maximum number of tasks.
+*/
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 import "."
 
-/*
-  * @brief The maxtasks page allows users to set the maximum number of tasks.
-*/
+
 Page {
     id: maxtasks
 
