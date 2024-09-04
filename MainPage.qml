@@ -27,8 +27,13 @@ Page {
         }
     }
 
+    /**
+     * @brief function to add the new task created in Add task page
+     * @param type:string task title
+     * @param type:int task date in milliseconds
+     * @param type:string task notes
+     */
     function addNewTask(title, dateMilliseconds, notes) {
-
         var currentDate = new Date()
         var fullDate = new Date(dateMilliseconds)
         var date = new Date(fullDate.getTime())
@@ -37,21 +42,13 @@ Page {
         currentDate.setTime(currentDate.setHours(0, 0, 0, 0))
         date.setTime(date.setHours(0, 0, 0, 0))
 
-        //console.log("currentDate only : " + currentDate.toLocaleString(Qt.locale("en_US"), Locale.LongFormat))
-        //console.log("date only : " + date.toLocaleString(Qt.locale("en_US"), Locale.LongFormat))
-
-        //console.log(date.getTime())
-        //console.log(currentDate.getTime())
-
         if (date.getTime() === currentDate.getTime()) {
-            //console.log("today")
             todayTaskModel.append({"task": title, "completed": false, "date": fullDate, "notes": notes})
         } else if (date.getTime() <= (currentDate.getTime()) + 3600000 * 7) {
+            // TODO : fix
             thisWeekTaskModel.append({"task": title, "completed": false, "date": fullDate, "notes": notes})
-            //console.log("week")
         } else {
             laterTaskModel.append({"task": title, "completed": false, "date": fullDate, "notes": notes})
-            //console.log("later")
         }
     }
 
@@ -270,6 +267,12 @@ Page {
                                 hoverEnabled: true
                                 onClicked: {
                                     var item = stackView.push(Qt.resolvedUrl("EditTask.qml"), {edit: true, editTitle: model.task, editDate: model.date, editNotes: model.notes})
+                                    /**
+                                     * @brief function to retrieve the information of a task modified from the edit task page
+                                     * @param type:string newTitle title
+                                     * @param type:int newDateMilliseconds date in milliseconds
+                                     * @param type:string newNote notes
+                                     */
                                     function getChange(newTitle, newDateMilliseconds, newNote) {
                                         model.task = newTitle;
                                         model.date = new Date(newDateMilliseconds);
@@ -365,11 +368,16 @@ Page {
                                     hoverEnabled: true
                                     onClicked: {
                                         var item = stackView.push(Qt.resolvedUrl("EditTask.qml"), {edit: true, editTitle: model.task, editDate: model.date, editNotes: model.notes})
+                                        /**
+                                         * @brief function to retrieve the information of a task modified from the edit task page
+                                         * @param type:string newTitle title
+                                         * @param type:int newDateMilliseconds date in milliseconds
+                                         * @param type:string newNote notes
+                                         */
                                         function getChange(newTitle, newDateMilliseconds, newNote) {
                                             model.task = newTitle;
                                             model.date = new Date(newDateMilliseconds);
-                                            model.notes = newNote;
-                                            console.log("trigger change : " + newTitle + " " + newNote);
+                                            model.notes = newNote;;
                                             item.exit.disconnect(getChange);
                                         }
                                         item.exit.connect(getChange);
@@ -464,11 +472,16 @@ Page {
                                     hoverEnabled: true
                                     onClicked: {
                                         var item = stackView.push(Qt.resolvedUrl("EditTask.qml"), {edit: true, editTitle: model.task, editDate: model.date, editNotes: model.notes})
+                                        /**
+                                         * @brief function to retrieve the information of a task modified from the edit task page
+                                         * @param type:string newTitle title
+                                         * @param type:int newDateMilliseconds date in milliseconds
+                                         * @param type:string newNote notes
+                                         */
                                         function getChange(newTitle, newDateMilliseconds, newNote) {
                                             model.task = newTitle;
                                             model.date = new Date(newDateMilliseconds);
                                             model.notes = newNote;
-                                            console.log("trigger change : " + newTitle + " " + newNote);
                                             item.exit.disconnect(getChange);
                                         }
                                         item.exit.connect(getChange);
@@ -517,6 +530,12 @@ Page {
         height: 26
         onClicked: {
             var item = stackView.push(Qt.resolvedUrl("EditTask.qml"))
+            /**
+             * @brief function to retrieve the information of a task added from the edit task page
+             * @param type:string newTitle title
+             * @param type:int newDate date in milliseconds
+             * @param type:string newNote notes
+             */
             function getNewTask(newTitle, newDate, newNote) {
                 item.exit.disconnect(getNewTask);
                 addNewTask(newTitle, newDate, newNote)
