@@ -14,6 +14,7 @@ Page {
         backButton.onClicked: stackView.pop()
     }
 
+    signal exit(var title, var date, var notes)
 
     Rectangle {
         anchors.fill: parent
@@ -311,6 +312,18 @@ Page {
                     horizontalAlignment: Text.AlignHCenter
                 }
                 enabled: !calendar.visible
+                onClicked: {
+                    var finalDate = calendar.validSelectedDate
+                    if (pm.checked) {
+                        finalDate.setHours(selectedHours.currentValue + 12)
+                    } else {
+                        finalDate.setHours(selectedHours.currentValue)
+                    }
+                    finalDate.setMinutes(selectedminutes.currentValue)
+
+                    exit(title.text, finalDate.getTime(), notes.text)
+                    stackView.pop()
+                }
             }
         }
 
