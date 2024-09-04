@@ -54,4 +54,6 @@ ToolBar {
         icon.source: "qrc:pictures/Check_Icon.svg"
         palette.button: Theme.primaryColor
     }
+
+
 }
