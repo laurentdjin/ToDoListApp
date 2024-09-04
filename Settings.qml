@@ -119,21 +119,4 @@ Page {
             }
         }
     }
-
-    /**
-      * @brief Button to return on the main page
-      */
-    Button {
-        text: "Aller à la MainPage"
-
-        background: Rectangle {
-            radius: Theme.radius
-            border.color: "white"
-            border.width: 2
-        }
-        anchors.bottom: parent.bottom
-        anchors.horizontalCenter: parent.horizontalCenter
-        anchors.margins: 20
-        onClicked: stackView.pop()
-    }
 }
