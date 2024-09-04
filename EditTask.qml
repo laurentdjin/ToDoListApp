@@ -14,6 +14,7 @@ Page {
         backButton.onClicked: stackView.pop()
     }
 
+    signal exit(var title, var date, var notes)
 
     Rectangle {
         anchors.fill: parent
@@ -37,6 +38,7 @@ Page {
                 }
 
                 TextField {
+                    id: title
                     placeholderText: "Task name"
                     font.pixelSize: Theme.txtSize
                     placeholderTextColor: Theme.secondaryColor
@@ -279,8 +281,11 @@ Page {
                     anchors.horizontalCenter: parent.horizontalCenter
                     height: editTask.height - comBar.height - taskTitle.height - taskDate.height - taskTime.height - addButton.height - 15*6 - notesLabel.height - taskNotes.spacing
                     TextArea {
+                        id: notes
+                        wrapMode: TextInput.Wrap
                         placeholderText: "empty"
                         placeholderTextColor: Theme.secondaryColor
+                        font.pixelSize: Theme.txtSize
                         color: Theme.foregroundColor
                         background: Rectangle {
                             color: Theme.backgroundColor
@@ -307,6 +312,18 @@ Page {
                     horizontalAlignment: Text.AlignHCenter
                 }
                 enabled: !calendar.visible
+                onClicked: {
+                    var finalDate = calendar.validSelectedDate
+                    if (pm.checked) {
+                        finalDate.setHours(selectedHours.currentValue + 12)
+                    } else {
+                        finalDate.setHours(selectedHours.currentValue)
+                    }
+                    finalDate.setMinutes(selectedminutes.currentValue)
+
+                    exit(title.text, finalDate.getTime(), notes.text)
+                    stackView.pop()
+                }
             }
         }
 
