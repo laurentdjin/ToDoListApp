@@ -101,9 +101,6 @@ Page {
         acceptButton.visible: true
         acceptButton.icon.source: "qrc:/pictures/settings.png"
         acceptButton.onClicked: stackView.push(Qt.resolvedUrl("Settings.qml"))
-        // acceptButton.background: Rectangle {
-        //     radius: Theme.radius
-        // }
         acceptButton.width: 26
         acceptButton.height: 26
     }
@@ -270,13 +267,6 @@ Page {
                                 onClicked: {stackView.push(Qt.resolvedUrl("EditTask.qml"))}
                             }
                         }
-
-                        // Text {
-                        //     text: todayListView.currentIndex
-                        //     font.pixelSize: Theme.txtSize
-                        // }
-
-
                     }
                 }
                 clip: true
@@ -349,15 +339,17 @@ Page {
                                 text: model.date
                                 font.pixelSize: Theme.txtSize
                                 color: "gray"
+
+                                MouseArea {
+                                    anchors.fill: parent
+                                    hoverEnabled: true
+                                    onEntered: { parent.opacity = 0.7}
+                                    onExited: { parent.opacity = 1.0}
+                                    onClicked: {stackView.push(Qt.resolvedUrl("EditTask.qml"))}
+                                }
                             }
                         }
-                        MouseArea {
-                            anchors.fill: parent
-                            hoverEnabled: true
-                            onEntered: { parent.opacity = 0.7}
-                            onExited: { parent.opacity = 1.0}
-                            onClicked: {stackView.push(Qt.resolvedUrl("EditTask.qml"))}
-                        }
+
                     }
                     clip: true
                 }
@@ -432,16 +424,18 @@ Page {
                                 text: model.date
                                 font.pixelSize: Theme.txtSize
                                 color: "gray"
+
+                                MouseArea {
+                                    anchors.fill: parent
+                                    hoverEnabled: true
+                                    onEntered: { parent.opacity = 0.7}
+                                    onExited: { parent.opacity = 1.0}
+                                    onClicked: {stackView.push(Qt.resolvedUrl("EditTask.qml"))}
+                                }
                             }
 
                         }
-                        MouseArea {
-                            anchors.fill: parent
-                            hoverEnabled: true
-                            onEntered: { parent.opacity = 0.7}
-                            onExited: { parent.opacity = 1.0}
-                            onClicked: {stackView.push(Qt.resolvedUrl("EditTask.qml"))}
-                        }
+
                     }
                     clip: true
                 }
