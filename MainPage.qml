@@ -101,9 +101,6 @@ Page {
         acceptButton.visible: true
         acceptButton.icon.source: "qrc:/pictures/settings.png"
         acceptButton.onClicked: stackView.push(Qt.resolvedUrl("Settings.qml"))
-        // acceptButton.background: Rectangle {
-        //     radius: Theme.radius
-        // }
         acceptButton.width: 26
         acceptButton.height: 26
     }
@@ -145,13 +142,22 @@ Page {
              * @brief this button allow user to add a new task
              */
             Button {
-                text: "Add task"
-                font.pixelSize: Theme.txtSize
-                onClicked: addTask()
-                background: Rectangle {
-                    radius: Theme.radius
-                }
-            }
+                            text: "Add task"
+                            font.pixelSize: Theme.txtSize
+                            onClicked: addTask()
+
+                            background: Rectangle {
+                                radius: Theme.radius
+                                color: "lightgray"
+                                opacity: mouseArea.containsMouse ? 0.5 : 1.0
+
+                                MouseArea {
+                                    id: mouseArea
+                                    anchors.fill: parent
+                                    hoverEnabled: true
+                                }
+                            }
+                        }
 
         }
 
@@ -171,6 +177,15 @@ Page {
                 font.pixelSize: Theme.txtSize
                 background: Rectangle {
                     radius: Theme.radius
+                    color: "lightgray"
+                    opacity: mouseArea2.containsMouse ? 0.5 : 1.0
+
+                    MouseArea {
+                        id: mouseArea2
+                        anchors.fill: parent
+                        hoverEnabled: true
+                    }
+
                 }
                 visible: (todayTaskModel.count > 0 || thisWeekTaskModel.count > 0 || laterTaskModel.count > 0)
                 onClicked: {
@@ -244,7 +259,7 @@ Page {
                 height: isTodayExpanded ? 150 : 0
                 model: todayTaskModel
                 delegate: Item {
-                    width: parent.width
+                    width: pageid.width
                     height: 50
 
                     Row {
@@ -265,18 +280,9 @@ Page {
                             MouseArea {
                                 anchors.fill: parent
                                 hoverEnabled: true
-                                onEntered: { parent.opacity = 0.7}
-                                onExited: { parent.opacity = 1.0}
                                 onClicked: {stackView.push(Qt.resolvedUrl("EditTask.qml"))}
                             }
                         }
-
-                        // Text {
-                        //     text: todayListView.currentIndex
-                        //     font.pixelSize: Theme.txtSize
-                        // }
-
-
                     }
                 }
                 clip: true
@@ -349,15 +355,15 @@ Page {
                                 text: model.date
                                 font.pixelSize: Theme.txtSize
                                 color: "gray"
+
+                                MouseArea {
+                                    anchors.fill: parent
+                                    hoverEnabled: true
+                                    onClicked: {stackView.push(Qt.resolvedUrl("EditTask.qml"))}
+                                }
                             }
                         }
-                        MouseArea {
-                            anchors.fill: parent
-                            hoverEnabled: true
-                            onEntered: { parent.opacity = 0.7}
-                            onExited: { parent.opacity = 1.0}
-                            onClicked: {stackView.push(Qt.resolvedUrl("EditTask.qml"))}
-                        }
+
                     }
                     clip: true
                 }
@@ -432,16 +438,16 @@ Page {
                                 text: model.date
                                 font.pixelSize: Theme.txtSize
                                 color: "gray"
+
+                                MouseArea {
+                                    anchors.fill: parent
+                                    hoverEnabled: true
+                                    onClicked: {stackView.push(Qt.resolvedUrl("EditTask.qml"))}
+                                }
                             }
 
                         }
-                        MouseArea {
-                            anchors.fill: parent
-                            hoverEnabled: true
-                            onEntered: { parent.opacity = 0.7}
-                            onExited: { parent.opacity = 1.0}
-                            onClicked: {stackView.push(Qt.resolvedUrl("EditTask.qml"))}
-                        }
+
                     }
                     clip: true
                 }
