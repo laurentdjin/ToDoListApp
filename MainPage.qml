@@ -262,8 +262,6 @@ Page {
                             MouseArea {
                                 anchors.fill: parent
                                 hoverEnabled: true
-                                onEntered: { parent.opacity = 0.7}
-                                onExited: { parent.opacity = 1.0}
                                 onClicked: {stackView.push(Qt.resolvedUrl("EditTask.qml"))}
                             }
                         }
@@ -343,8 +341,6 @@ Page {
                                 MouseArea {
                                     anchors.fill: parent
                                     hoverEnabled: true
-                                    onEntered: { parent.opacity = 0.7}
-                                    onExited: { parent.opacity = 1.0}
                                     onClicked: {stackView.push(Qt.resolvedUrl("EditTask.qml"))}
                                 }
                             }
@@ -428,8 +424,6 @@ Page {
                                 MouseArea {
                                     anchors.fill: parent
                                     hoverEnabled: true
-                                    onEntered: { parent.opacity = 0.7}
-                                    onExited: { parent.opacity = 1.0}
                                     onClicked: {stackView.push(Qt.resolvedUrl("EditTask.qml"))}
                                 }
                             }
