@@ -279,6 +279,7 @@ Page {
                     anchors.horizontalCenter: parent.horizontalCenter
                     height: editTask.height - comBar.height - taskTitle.height - taskDate.height - taskTime.height - addButton.height - 15*6 - notesLabel.height - taskNotes.spacing
                     TextArea {
+                        wrapMode: TextInput.Wrap
                         placeholderText: "empty"
                         placeholderTextColor: Theme.secondaryColor
                         font.pixelSize: Theme.txtSize
