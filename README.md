@@ -4,7 +4,6 @@
 - [Introduction](#introduction)
 - [Project Features](#project-features)
 - [Project Structure](#project-structure)
-- [Project Management](#project-management)
 - [Quick Overview](#quick-overview)
 - [How to Run the Project](#how-to-run-the-project)
 - [Team](#team)
@@ -30,31 +29,22 @@ Qt Version: 6.7.2
   - QML
   - Qt Creator
 
-### Project Management
-1- Link to JIRA -> [jira](https://laurentjin.atlassian.net/jira/software/c/projects/TODO/boards/7)
-![UML](screen/jira1.png)
-2- Use Case Diagram  
-![USECASE](screen/jira2.png)
 ### Quick Overview
-1- Class Diagram  
-![UML](screen/ClassDiagram.png)
-2- Use Case Diagram  
-![USECASE](screen/UseCase.png)
-3- Application MainPage   
+1- Application MainPage   
 ![USECASE](screen/mainPage.png)
-4- Calendar Edit
+2- Calendar Edit
 ![USECASE](screen/calendar.png)
-5- Task Edit
+3- Task Edit
 ![USECASE](screen/edit.png)
-6- Application Config Main Menu
+4- Application Config Main Menu
 ![USECASE](screen/configMain.png)
-7- Application Theme setting
+5- Application Theme setting
 ![USECASE](screen/theme.png)
-8- Application Font setting
+6- Application Font setting
 ![USECASE](screen/font.png)
-9- Application Max tasks setting
+7- Application Max tasks setting
 ![USECASE](screen/max.png)
-10- Application remove Done tasks setting
+8- Application remove Done tasks setting
 ![USECASE](screen/removedone.png)
 
 
