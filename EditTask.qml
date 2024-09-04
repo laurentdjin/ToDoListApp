@@ -18,7 +18,7 @@ Page {
 
     property bool edit: false
     property string editTitle: ""
-    property date editDate
+    property date editDate: new Date()
     property string editNotes: ""
 
     Rectangle {
@@ -122,7 +122,7 @@ Page {
 
                         RadioButton {
                             id: am
-                            checked: true
+                            checked: edit ? (editDate.getHours() > 11 ? false : true) : true
                             text: "AM"
                             font.pixelSize: Theme.txtSize
                             enabled: !calendar.visible
@@ -154,6 +154,7 @@ Page {
                         }
                         RadioButton {
                             id: pm
+                            checked: edit ? (editDate.getHours() > 11 ? true : false) : false
                             text: "PM"
                             font.pixelSize: Theme.txtSize
                             enabled: !calendar.visible
@@ -191,7 +192,7 @@ Page {
                             width: 50
                             anchors.verticalCenter: parent.verticalCenter
                             enabled: !calendar.visible
-                            currentIndex: 0
+                            currentIndex: edit ? (editDate.getHours() > 11 ? editDate.getHours() - 12 : editDate.getHours()) : 0
                             background: Rectangle {
                                 color: Theme.backgroundColor
                                 border.color: Theme.secondaryColor
@@ -238,7 +239,7 @@ Page {
                             width: 50
                             anchors.verticalCenter: parent.verticalCenter
                             enabled: !calendar.visible
-                            currentIndex: 0
+                            currentIndex: edit ? editDate.getMinutes()/5 : 0
                             background: Rectangle {
                                 color: Theme.backgroundColor
                                 border.color: Theme.secondaryColor

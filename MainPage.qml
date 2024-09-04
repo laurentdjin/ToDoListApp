@@ -271,7 +271,16 @@ Page {
                             MouseArea {
                                 anchors.fill: parent
                                 hoverEnabled: true
-                                onClicked: {stackView.push(Qt.resolvedUrl("EditTask.qml"), {edit: true, editTitle: model.task, editDate: model.date, editNotes: model.notes})}
+                                onClicked: {
+                                    var item = stackView.push(Qt.resolvedUrl("EditTask.qml"), {edit: true, editTitle: model.task, editDate: model.date, editNotes: model.notes})
+                                    function getChange(newTitle, newDateMilliseconds, newNote) {
+                                        model.task = newTitle;
+                                        model.date = new Date(newDateMilliseconds);
+                                        model.notes = newNote;
+                                        item.exit.disconnect(getChange);
+                                    }
+                                    item.exit.connect(getChange);
+                                }
                             }
                         }
 
@@ -362,7 +371,17 @@ Page {
                                 MouseArea {
                                     anchors.fill: parent
                                     hoverEnabled: true
-                                    onClicked: {stackView.push(Qt.resolvedUrl("EditTask.qml"), {edit: true, editTitle: model.task, editDate: model.date, editNotes: model.notes})}
+                                    onClicked: {
+                                        var item = stackView.push(Qt.resolvedUrl("EditTask.qml"), {edit: true, editTitle: model.task, editDate: model.date, editNotes: model.notes})
+                                        function getChange(newTitle, newDateMilliseconds, newNote) {
+                                            model.task = newTitle;
+                                            model.date = new Date(newDateMilliseconds);
+                                            model.notes = newNote;
+                                            console.log("trigger change : " + newTitle + " " + newNote);
+                                            item.exit.disconnect(getChange);
+                                        }
+                                        item.exit.connect(getChange);
+                                    }
                                 }
                             }
                         }
@@ -450,7 +469,17 @@ Page {
                                 MouseArea {
                                     anchors.fill: parent
                                     hoverEnabled: true
-                                    onClicked: {stackView.push(Qt.resolvedUrl("EditTask.qml"), {edit: true, editTitle: model.task, editDate: model.date, editNotes: model.notes})}
+                                    onClicked: {
+                                        var item = stackView.push(Qt.resolvedUrl("EditTask.qml"), {edit: true, editTitle: model.task, editDate: model.date, editNotes: model.notes})
+                                        function getChange(newTitle, newDateMilliseconds, newNote) {
+                                            model.task = newTitle;
+                                            model.date = new Date(newDateMilliseconds);
+                                            model.notes = newNote;
+                                            console.log("trigger change : " + newTitle + " " + newNote);
+                                            item.exit.disconnect(getChange);
+                                        }
+                                        item.exit.connect(getChange);
+                                    }
                                 }
                             }
 
