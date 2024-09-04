@@ -10,6 +10,10 @@ Page {
 
     id: pageid
 
+    property string newTaskTitle: ""
+    property date newTaskDate
+    property string newTaskNotes: ""
+
     /**
       *@brief function add a new task
       */
