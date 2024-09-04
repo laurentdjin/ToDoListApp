@@ -3,6 +3,9 @@ import QtQuick.Controls 6.7
 
 Page {
 
+    /**
+      * @brief Header bar for page
+      */
     header: CommonBar {
         id: comBar
 
@@ -12,6 +15,9 @@ Page {
         backButton.onClicked: stackView.pop(null)
     }
 
+    /**
+      * @brief Fill the entire page with the background color
+      */
     Rectangle {
         anchors.fill: parent
         color: Theme.backgroundColor
@@ -55,6 +61,9 @@ Page {
             }
         }
 
+        /**
+          * @brief Presentation and behaviour of each list item (text, icon, color, hover, etc...)
+          */
         delegate: ItemDelegate {
             id: settingsItem
             width: parent.width
