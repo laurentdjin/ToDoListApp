@@ -12,7 +12,7 @@ QtObject {
     readonly property color thisWeekColor : lightTheme ? "green" : "lightgreen"
     readonly property color laterColor : lightTheme ? "red" : "orange"
     readonly property int radius : 10
-    readonly property double opacity : lightTheme ? 0.1 : 0.7
+    readonly property double opacity : lightTheme ? 0.4 : 0.7
     property int txtSize : 16
     property int maxTasksNumber : 10
     property bool removeDoneTasks: false
