@@ -1,3 +1,8 @@
+/**
+  * @file CustomCalendar.qml
+  * Custom Composant to display a calendar
+  */
+
 import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls
@@ -9,13 +14,27 @@ Rectangle {
     color: Theme.backgroundColor
     radius: Theme.radius
 
+    /** type:int fist year of the calendar */
     readonly property int firstYear: 2024
+
+    /** type:int last year of the calendar */
     readonly property int lastYear: 2030
 
+    /** type:date picked date */
     property date selectedDate: new Date()
+
+    /** type:bool if the picked date is valid */
     property bool validDate: false
+
+    /** type:date valid picked date */
     property date validSelectedDate : new Date(0)
 
+    /**
+     * @brief function to fill an array with years in a defined range
+     * @param type:int first first year
+     * @param type:int last last year
+     * @return array of years
+     */
     function fillYear(first, last){
         let years = []
         for(let i = first; i <= last; i++) {
@@ -193,6 +212,8 @@ Rectangle {
                 }
 
                 onClicked: (date) => {
+                    // verify the picked date to valid it
+
                     selectedDate = date
                     var currentDate = new Date()
 

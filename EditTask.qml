@@ -1,3 +1,9 @@
+/**
+  * @file EditTask.qml
+  * The page to add or modify a task
+  */
+
+
 import QtQuick
 import QtQuick.Controls
 
@@ -14,11 +20,24 @@ Page {
         backButton.onClicked: stackView.pop()
     }
 
+    /**
+      * @param type:string title The task title
+      * @param type:dare date The task date
+      * @param type:string notes The task notes
+      * The signal emitted when the Add task button is clicked
+      */
     signal exit(var title, var date, var notes)
 
+    /** type:bool to know if it is a modification or a new task */
     property bool edit: false
+
+    /** type:string initial title of the modified task */
     property string editTitle: ""
+
+    /** type:date initial date and time of the modified task */
     property date editDate: new Date()
+
+    /** type:string initial notes of the modified task */
     property string editNotes: ""
 
     Rectangle {
@@ -89,7 +108,7 @@ Page {
                     MouseArea {
                         anchors.fill: parent
                         onClicked: {
-                            calendar.visible = true
+                            calendar.visible = true // display the calendar to pick a date
                         }
                     }
                 }
@@ -335,6 +354,7 @@ Page {
             }
         }
 
+        /** opaque background when calendar is displayed */
         Rectangle {
             id: fog
             anchors.fill: parent
@@ -342,6 +362,7 @@ Page {
             color: Theme.secondaryColor
             opacity: 0.8
         }
+        /** custom composant in CustomCalendar.qml */
         CustomCalendar {
             id: calendar
             validSelectedDate: edit ? editDate : new Date(0)
