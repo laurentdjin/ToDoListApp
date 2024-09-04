@@ -115,6 +115,7 @@ Page {
                     radius: Theme.radius
                 }
             }
+
         }
 
         /**
@@ -123,10 +124,42 @@ Page {
         Column {
             spacing: 10
 
+            /**
+             * @brief Section Today
+             */
+            Button {
+                anchors.right: parent.right
+                anchors.rightMargin: 50
+                text: "Clear completed tasks"
+                font.pixelSize: Theme.txtSize
+                background: Rectangle {
+                    radius: Theme.radius
+                }
+                visible: (todayTaskModel.count > 0 || thisWeekTaskModel.count > 0 || laterTaskModel.count > 0)
+                onClicked: {
+                    // Function to clear checked items from a model
+                    function clearCompletedTasks(model) {
+                        for (let i = model.count - 1; i >= 0; i--) {
+                            if (model.get(i).completed) {
+                                model.remove(i)
+                            }
+                        }
+                    }
+                    // Clear completed tasks from each model
+                    clearCompletedTasks(todayTaskModel)
+                    clearCompletedTasks(thisWeekTaskModel)
+                    clearCompletedTasks(laterTaskModel)
+
+                    // Update visibility of the clear button if needed
+                    clearAllTasksButton.visible = (todayTaskModel.count > 0 || thisWeekTaskModel.count > 0 || laterTaskModel.count > 0)
+                }
+            }
+
+
             Row {
                 width: parent.width
                 height: 20
-                spacing: 20
+                spacing: 20  
 
                 Text {
                     text: "Today"
@@ -189,7 +222,7 @@ Page {
                         Text {
                             text: model.task
                             font.pixelSize: Theme.txtSize
-                            color: model.completed ? "gray" : "black"
+                            color: Theme.foregroundColor
                             opacity: model.completed ? 0.5 : 1.0
 
                             MouseArea {
@@ -272,7 +305,7 @@ Page {
                             Text {
                                 text: model.task
                                 font.pixelSize: Theme.txtSize
-                                color: model.completed ? "gray" : "black"
+                                color: Theme.foregroundColor
                                 opacity: model.completed ? 0.5 : 1.0
                             }
                             Text {
@@ -354,7 +387,7 @@ Page {
                             Text {
                                 text: model.task
                                 font.pixelSize: Theme.txtSize
-                                color: model.completed ? "gray" : "black"
+                                color: Theme.foregroundColor
                                 opacity: model.completed ? 0.5 : 1.0
                             }
 
