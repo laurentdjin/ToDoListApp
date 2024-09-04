@@ -20,7 +20,8 @@ Page {
 
     function addTask() {
         if (taskInput.text !== "" && Theme.maxTasksNumber > todayTaskModel.count) {
-            let currentDate = new Date().toLocaleDateString(Qt.locale("en_US"), Locale.LongFormat)
+            let currentDate = new Date()
+            currentDate.setHours(23, 55, 00);
             todayTaskModel.append({"task": taskInput.text, "completed": false, "date": currentDate, "notes": ""})
             taskInput.text = ""
         }
@@ -28,22 +29,13 @@ Page {
 
     function addNewTask(title, dateMilliseconds, notes) {
 
-        var fullDate = new Date()
-        fullDate.setTime(dateMilliseconds)
-
-        //console.log("addNewTask : " + title + ", " + fullDate.toLocaleString(Qt.locale("en_US"), Locale.LongFormat) + ", " + notes)
-
         var currentDate = new Date()
+        var fullDate = new Date(dateMilliseconds)
+        var date = new Date(fullDate.getTime())
 
-        // remove time from currentDate to compare only date
-        var timeMilliseconds = currentDate.getHours() * 3600000 + currentDate.getMinutes() * 60000 + currentDate.getMilliseconds()
-        currentDate.setTime(currentDate.getTime() - timeMilliseconds)
-
-        // remove time from task date to compare only date
-        var date = new Date()
-        date.setTime(fullDate.getTime())
-        timeMilliseconds = date.getHours() * 3600000 + date.getMinutes() * 60000 + date.getMilliseconds()
-        date.setTime(date.getTime() - timeMilliseconds)
+        // remove time from dates to compare them
+        currentDate.setTime(currentDate.setHours(0, 0, 0, 0))
+        date.setTime(date.setHours(0, 0, 0, 0))
 
         //console.log("currentDate only : " + currentDate.toLocaleString(Qt.locale("en_US"), Locale.LongFormat))
         //console.log("date only : " + date.toLocaleString(Qt.locale("en_US"), Locale.LongFormat))
@@ -51,15 +43,14 @@ Page {
         //console.log(date.getTime())
         //console.log(currentDate.getTime())
 
-
-        if ((date.getFullYear() === currentDate.getFullYear()) && (date.getMonth() === currentDate.getMonth()) && (date.getDate() === currentDate.getDate())) {
+        if (date.getTime() === currentDate.getTime()) {
             //console.log("today")
-            todayTaskModel.append({"task": title, "completed": false, "date": fullDate.toLocaleString(Qt.locale("en_US"), Locale.LongFormat), "notes": notes})
-        } else if (date.getTime() < (currentDate.getTime()) + 3600000 * 7) {
-            thisWeekTaskModel.append({"task": title, "completed": false, "date": fullDate.toLocaleString(Qt.locale("en_US"), Locale.LongFormat), "notes": notes})
+            todayTaskModel.append({"task": title, "completed": false, "date": fullDate, "notes": notes})
+        } else if (date.getTime() <= (currentDate.getTime()) + 3600000 * 7) {
+            thisWeekTaskModel.append({"task": title, "completed": false, "date": fullDate, "notes": notes})
             //console.log("week")
         } else {
-            laterTaskModel.append({"task": title, "completed": false, "date": fullDate.toLocaleString(Qt.locale("en_US"), Locale.LongFormat), "notes": notes})
+            laterTaskModel.append({"task": title, "completed": false, "date": fullDate, "notes": notes})
             //console.log("later")
         }
     }
@@ -271,6 +262,12 @@ Page {
                             }
                         }
 
+                        Text {
+                            text: model.date.toLocaleTimeString(Qt.locale("en_US"), Locale.ShortFormat)
+                            font.pixelSize: Theme.txtSize
+                            color: "gray"
+                        }
+
                         // Text {
                         //     text: todayListView.currentIndex
                         //     font.pixelSize: Theme.txtSize
@@ -346,7 +343,12 @@ Page {
                                 opacity: model.completed ? 0.5 : 1.0
                             }
                             Text {
-                                text: model.date
+                                text: model.date.toLocaleDateString(Qt.locale("en_US"), Locale.LongFormat)
+                                font.pixelSize: Theme.txtSize
+                                color: "gray"
+                            }
+                            Text {
+                                text: model.date.toLocaleTimeString(Qt.locale("en_US"), Locale.ShortFormat)
                                 font.pixelSize: Theme.txtSize
                                 color: "gray"
                             }
@@ -429,7 +431,13 @@ Page {
                             }
 
                             Text {
-                                text: model.date
+                                text: model.date.toLocaleDateString(Qt.locale("en_US"), Locale.LongFormat)
+                                font.pixelSize: Theme.txtSize
+                                color: "gray"
+                            }
+
+                            Text {
+                                text: model.date.toLocaleTimeString(Qt.locale("en_US"), Locale.ShortFormat)
                                 font.pixelSize: Theme.txtSize
                                 color: "gray"
                             }
