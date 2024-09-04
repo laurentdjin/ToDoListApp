@@ -35,31 +35,33 @@ Qt Version: 6.7.2
 ### Quick Overview
 1- Class Diagram  
 ![UML](screen/ClassDiagram.png)
-2- AUse Case Diagram  
+2- Use Case Diagram  
 ![USECASE](screen/UseCase.png)
-3- Application Review 2  
+3- Applicattion MainPage   
 
-4- Menu Bar  
+4- Calendar Edit
 
-5- Save File  
+5- Task Edit
 
-6- Task Details  
+6- Application Config pricipal Menu
 
-7- Task Priority  
+7- Application Theme setting
 
-8- Task Categories  
+8- Application font setting
 
-9- About  
+9- Application max task setting
+
+10- Application remove done tasks setting
+  
 
 
 ### How to Run the Project
 #### Option 1: Run the Application
-1. **Clone the repository: **
-    git clone git@github.com:laurentdjin/ToDoListApp.git
+1. Clone the repository: git clone git@github.com:laurentdjin/ToDoListApp.git
 2. Navigate to the Installer directory
 3. Execute the installer to install the ToDoListApp on your system
 4. installation steps
-4. Launch the application
+5. Launch the application
 #### Option 2: Modify the Application
 1.Download Qt & Qt Creator
 2.Clone the repository.
@@ -69,7 +71,7 @@ Qt Version: 6.7.2
     
 
 ### Team
-This QT and C++ project was created by:
+This project was created by:
 
 - [Laurent]
 - [Bryan]
