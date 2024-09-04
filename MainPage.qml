@@ -26,6 +26,40 @@ Page {
         }
     }
 
+    function addNewTask(title, date, notes) {
+
+        //console.log("addNewTask")
+
+        var currentDate = new Date()
+
+        // remove time from currentDate to compare only date
+        var timeMilliseconds = currentDate.getHours() * 3600000 + currentDate.getMinutes() * 60000 + currentDate.getMilliseconds()
+        currentDate.setTime(currentDate.getTime() - timeMilliseconds)
+
+        // remove time from task date to compare only date
+        timeMilliseconds = date.getHours() * 3600000 + date.getMinutes() * 60000 + date.getMilliseconds()
+        date.setTime(date.getTime() - timeMilliseconds)
+
+        //console.log("currentDate only : " + currentDate.toLocaleString(Qt.locale("en_US"), Locale.LongFormat))
+        //console.log("date only : " + date.toLocaleString(Qt.locale("en_US"), Locale.LongFormat))
+
+        //console.log(date.getTime())
+        //console.log(currentDate.getTime())
+
+
+        if ((date.getFullYear() === currentDate.getFullYear()) && (date.getMonth() === currentDate.getMonth()) && (date.getDate() === currentDate.getDate())) {
+            //console.log("today")
+            todayTaskModel.append({"task": title, "completed": false, "date": date, "notes": notes})
+        } else if (date.getTime() < (currentDate.getTime()) + 3600000 * 7) {
+            thisWeekTaskModel.append({"task": title, "completed": false, "date": date, "notes": notes})
+            //console.log("week")
+        } else {
+            laterTaskModel.append({"task": title, "completed": false, "date": date, "notes": notes})
+            //console.log("later")
+        }
+
+    }
+
     /**
       *@brief Models for today, this week, later task
       */
