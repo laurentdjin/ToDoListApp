@@ -196,8 +196,9 @@ Rectangle {
                     selectedDate = date
                     var currentDate = new Date()
                     // calculate the time in milliseconds to remove it from the current date and be able to select the current date in the calendar
-                    var timeMilliseconds = currentDate.getMinutes() * 3600000 + currentDate.getMinutes() * 60000 + currentDate.getMilliseconds()
-                    if (selectedDate.getTime() >= currentDate - timeMilliseconds) {
+                    var timeMilliseconds = currentDate.getHours() * 3600000 + currentDate.getMinutes() * 60000 + currentDate.getMilliseconds()
+                    currentDate.setTime(currentDate.getTime() - timeMilliseconds)
+                    if (selectedDate.getTime() >= currentDate.getTime()) {
                         validDate = true
                     } else {
                         validDate = false
