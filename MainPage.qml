@@ -142,13 +142,22 @@ Page {
              * @brief this button allow user to add a new task
              */
             Button {
-                text: "Add task"
-                font.pixelSize: Theme.txtSize
-                onClicked: addTask()
-                background: Rectangle {
-                    radius: Theme.radius
-                }
-            }
+                            text: "Add task"
+                            font.pixelSize: Theme.txtSize
+                            onClicked: addTask()
+
+                            background: Rectangle {
+                                radius: Theme.radius
+                                color: "lightgray"
+                                opacity: mouseArea.containsMouse ? 0.5 : 1.0
+
+                                MouseArea {
+                                    id: mouseArea
+                                    anchors.fill: parent
+                                    hoverEnabled: true
+                                }
+                            }
+                        }
 
         }
 
@@ -168,6 +177,15 @@ Page {
                 font.pixelSize: Theme.txtSize
                 background: Rectangle {
                     radius: Theme.radius
+                    color: "lightgray"
+                    opacity: mouseArea2.containsMouse ? 0.5 : 1.0
+
+                    MouseArea {
+                        id: mouseArea2
+                        anchors.fill: parent
+                        hoverEnabled: true
+                    }
+
                 }
                 visible: (todayTaskModel.count > 0 || thisWeekTaskModel.count > 0 || laterTaskModel.count > 0)
                 onClicked: {
@@ -241,7 +259,7 @@ Page {
                 height: isTodayExpanded ? 150 : 0
                 model: todayTaskModel
                 delegate: Item {
-                    width: parent.width
+                    width: pageid.width
                     height: 50
 
                     Row {
