@@ -75,9 +75,9 @@ Page {
      *@brief Models for pop up when the task reach the limit
      */
 
-     MessageDialog {
-         id: messageDialog
-     }
+    MessageDialog {
+        id: messageDialog
+    }
 
     /**
       *@brief CommonBar used on the MainPage
@@ -136,33 +136,26 @@ Page {
              * @brief this button allow user to add a new task
              */
             Button {
-                            text: "Add task"
-                            font.pixelSize: Theme.txtSize
-                            onClicked: addTask()
-
-                            background: Rectangle {
-                                radius: Theme.radius
-                                color: "lightgray"
-                                opacity: mouseArea.containsMouse ? 0.5 : 1.0
-
-                                MouseArea {
-                                    id: mouseArea
-                                    anchors.fill: parent
-                                    hoverEnabled: true
-                                }
-                            }
-                        }
-
+                text: "Add task"
+                font.pixelSize: Theme.txtSize
+                onClicked: addTask()
+                background: Rectangle {
+                    radius: Theme.radius
+                    color: "lightgray"
+                    opacity: mouseArea.containsMouse ? 0.5 : 1.0
+                    MouseArea {
+                        id: mouseArea
+                        anchors.fill: parent
+                        hoverEnabled: true
+                    }
+                }
+            }
         }
-
         /**
          * @brief Section Today
          */
         Column {
             spacing: 10
-            /**
-             * @brief Section Today
-             */
             Button {
                 text: "Clear completed tasks"
                 font.pixelSize: Theme.txtSize
@@ -170,13 +163,14 @@ Page {
                     radius: Theme.radius
                     color: "lightgray"
                     opacity: mouseArea2.containsMouse ? 0.5 : 1.0
-
+                    /**
+                     * @brief Area allowing user to redirect user on the edit page
+                     */
                     MouseArea {
                         id: mouseArea2
                         anchors.fill: parent
                         hoverEnabled: true
                     }
-
                 }
                 visible: (todayTaskModel.count > 0 || thisWeekTaskModel.count > 0 || laterTaskModel.count > 0)
                 onClicked: {
@@ -198,11 +192,10 @@ Page {
                 }
             }
 
-
             Row {
                 width: parent.width
                 height: 20
-                spacing: 20  
+                spacing: 20
 
                 Text {
                     text: "Today"
@@ -269,7 +262,9 @@ Page {
                             font.pixelSize: Theme.txtSize
                             color: Theme.foregroundColor
                             opacity: model.completed ? 0.5 : 1.0
-
+                            /**
+                             * @brief Area allowing user to redirect user on the edit page
+                             */
                             MouseArea {
                                 anchors.fill: parent
                                 hoverEnabled: true
@@ -313,6 +308,9 @@ Page {
                         color: Theme.thisWeekColor
                     }
 
+                    /**
+                     * @brief button allowing user to expand or reduce tasks listed in this week section
+                     */
                     Button {
                         id: toggleButton2
                         background: Rectangle{color:Theme.backgroundColor}
@@ -360,7 +358,9 @@ Page {
                                 text: model.date.toLocaleTimeString(Qt.locale("en_US"), Locale.ShortFormat)
                                 font.pixelSize: Theme.txtSize
                                 color: "gray"
-
+                                /**
+                                 * @brief Area allowing user to redirect user on the edit page
+                                 */
                                 MouseArea {
                                     anchors.fill: parent
                                     hoverEnabled: true
@@ -398,6 +398,9 @@ Page {
                         color: Theme.laterColor
                     }
 
+                    /**
+                     * @brief this button allow user to expand or reduce later section
+                     */
                     Button {
                         id: toggleButton3
                         background: Rectangle{color:Theme.backgroundColor}
