@@ -1,0 +1,19 @@
+var searchData=
+[
+  ['secondarycolor_0',['secondaryColor',['../d3/dae/class_theme.html#a32c0f66c42d5dd4797011e626828dcb6',1,'Theme']]],
+  ['sectioncolor_1',['sectionColor',['../db/d7a/class_task_section.html#a2e2b281820ee5073fcf8695d4fb5ef54',1,'TaskSection']]],
+  ['sectionmodel_2',['sectionModel',['../db/d7a/class_task_section.html#a6fbfc507804c812d7f8bfdb83f55347c',1,'TaskSection']]],
+  ['sectiontitle_3',['sectionTitle',['../db/d7a/class_task_section.html#a84f4d9972a64dadf471d3fdb5178574f',1,'TaskSection']]],
+  ['selecteddate_4',['selectedDate',['../da/daf/class_custom_calendar.html#ad11465a97f594af935121c06c00a1eca',1,'CustomCalendar']]],
+  ['selectedhours_5',['selectedHours',['../de/dc5/class_edit_task.html#a33e128932e3cf8764418f5933a4496fb',1,'EditTask']]],
+  ['selectedminutes_6',['selectedminutes',['../de/dc5/class_edit_task.html#a0e4e3eacd4d2b84fdf11c4212261400d',1,'EditTask']]],
+  ['selectedmonth_7',['selectedMonth',['../da/daf/class_custom_calendar.html#a289df01f77845e1c0d6bbab970031e7b',1,'CustomCalendar']]],
+  ['selectedyear_8',['selectedYear',['../da/daf/class_custom_calendar.html#ae7e0b3f123e3e2f68e2eb39a18e0f598',1,'CustomCalendar']]],
+  ['settings_9',['Settings',['../db/d2b/class_settings.html',1,'']]],
+  ['settings_2eqml_10',['Settings.qml',['../d1/dce/_settings_8qml.html',1,'']]],
+  ['slider_11',['slider',['../da/d63/class_font_size_edit.html#aab158721283d21bdc1697339928088c0',1,'FontSizeEdit']]],
+  ['sliderrow_12',['sliderRow',['../da/d63/class_font_size_edit.html#a7b65b99e096fb60a2ce72fd14903cd43',1,'FontSizeEdit']]],
+  ['stackview_13',['stackView',['../d4/dc4/classmain.html#ae8737137588a9f59541f17675371a982',1,'main']]],
+  ['switchtheme_14',['SwitchTheme',['../d5/ded/class_switch_theme.html',1,'']]],
+  ['switchtheme_2eqml_15',['SwitchTheme.qml',['../d4/dde/_switch_theme_8qml.html',1,'']]]
+];
