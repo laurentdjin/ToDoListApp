@@ -21,18 +21,47 @@ Page {
     function addTask() {
         if (taskInput.text !== "" && Theme.maxTasksNumber > todayTaskModel.count) {
             let currentDate = new Date().toLocaleDateString(Qt.locale("en_US"), Locale.LongFormat)
-            todayTaskModel.append({"task": taskInput.text, "completed": false, "date": currentDate})
+            todayTaskModel.append({"task": taskInput.text, "completed": false, "date": currentDate, "notes": ""})
             taskInput.text = ""
         }
     }
 
+    function addNewTask(title, dateMilliseconds, notes) {
 
-   /**
-    *@brief Models for pop up when the task reach the limit
-    */
+        var fullDate = new Date()
+        fullDate.setTime(dateMilliseconds)
 
-    MessageDialog {
-        id: messageDialog
+        //console.log("addNewTask : " + title + ", " + fullDate.toLocaleString(Qt.locale("en_US"), Locale.LongFormat) + ", " + notes)
+
+        var currentDate = new Date()
+
+        // remove time from currentDate to compare only date
+        var timeMilliseconds = currentDate.getHours() * 3600000 + currentDate.getMinutes() * 60000 + currentDate.getMilliseconds()
+        currentDate.setTime(currentDate.getTime() - timeMilliseconds)
+
+        // remove time from task date to compare only date
+        var date = new Date()
+        date.setTime(fullDate.getTime())
+        timeMilliseconds = date.getHours() * 3600000 + date.getMinutes() * 60000 + date.getMilliseconds()
+        date.setTime(date.getTime() - timeMilliseconds)
+
+        //console.log("currentDate only : " + currentDate.toLocaleString(Qt.locale("en_US"), Locale.LongFormat))
+        //console.log("date only : " + date.toLocaleString(Qt.locale("en_US"), Locale.LongFormat))
+
+        //console.log(date.getTime())
+        //console.log(currentDate.getTime())
+
+
+        if ((date.getFullYear() === currentDate.getFullYear()) && (date.getMonth() === currentDate.getMonth()) && (date.getDate() === currentDate.getDate())) {
+            //console.log("today")
+            todayTaskModel.append({"task": title, "completed": false, "date": fullDate.toLocaleString(Qt.locale("en_US"), Locale.LongFormat), "notes": notes})
+        } else if (date.getTime() < (currentDate.getTime()) + 3600000 * 7) {
+            thisWeekTaskModel.append({"task": title, "completed": false, "date": fullDate.toLocaleString(Qt.locale("en_US"), Locale.LongFormat), "notes": notes})
+            //console.log("week")
+        } else {
+            laterTaskModel.append({"task": title, "completed": false, "date": fullDate.toLocaleString(Qt.locale("en_US"), Locale.LongFormat), "notes": notes})
+            //console.log("later")
+        }
     }
 
     /**
@@ -50,6 +79,14 @@ Page {
     ListModel {
         id: laterTaskModel
     }
+
+    /**
+     *@brief Models for pop up when the task reach the limit
+     */
+
+     MessageDialog {
+         id: messageDialog
+     }
 
     /**
       *@brief CommonBar used on the MainPage
@@ -115,6 +152,7 @@ Page {
                     radius: Theme.radius
                 }
             }
+
         }
 
         /**
@@ -123,10 +161,42 @@ Page {
         Column {
             spacing: 10
 
+            /**
+             * @brief Section Today
+             */
+            Button {
+                anchors.right: parent.right
+                anchors.rightMargin: 50
+                text: "Clear completed tasks"
+                font.pixelSize: Theme.txtSize
+                background: Rectangle {
+                    radius: Theme.radius
+                }
+                visible: (todayTaskModel.count > 0 || thisWeekTaskModel.count > 0 || laterTaskModel.count > 0)
+                onClicked: {
+                    // Function to clear checked items from a model
+                    function clearCompletedTasks(model) {
+                        for (let i = model.count - 1; i >= 0; i--) {
+                            if (model.get(i).completed) {
+                                model.remove(i)
+                            }
+                        }
+                    }
+                    // Clear completed tasks from each model
+                    clearCompletedTasks(todayTaskModel)
+                    clearCompletedTasks(thisWeekTaskModel)
+                    clearCompletedTasks(laterTaskModel)
+
+                    // Update visibility of the clear button if needed
+                    clearAllTasksButton.visible = (todayTaskModel.count > 0 || thisWeekTaskModel.count > 0 || laterTaskModel.count > 0)
+                }
+            }
+
+
             Row {
                 width: parent.width
                 height: 20
-                spacing: 20
+                spacing: 20  
 
                 Text {
                     text: "Today"
@@ -189,7 +259,7 @@ Page {
                         Text {
                             text: model.task
                             font.pixelSize: Theme.txtSize
-                            color: model.completed ? "gray" : "black"
+                            color: Theme.foregroundColor
                             opacity: model.completed ? 0.5 : 1.0
 
                             MouseArea {
@@ -272,7 +342,7 @@ Page {
                             Text {
                                 text: model.task
                                 font.pixelSize: Theme.txtSize
-                                color: model.completed ? "gray" : "black"
+                                color: Theme.foregroundColor
                                 opacity: model.completed ? 0.5 : 1.0
                             }
                             Text {
@@ -354,7 +424,7 @@ Page {
                             Text {
                                 text: model.task
                                 font.pixelSize: Theme.txtSize
-                                color: model.completed ? "gray" : "black"
+                                color: Theme.foregroundColor
                                 opacity: model.completed ? 0.5 : 1.0
                             }
 
@@ -397,7 +467,14 @@ Page {
         icon.source: "qrc:/pictures/add.png"
         width: 26
         height: 26
-        onClicked: stackView.push(Qt.resolvedUrl("EditTask.qml"))
+        onClicked: {
+            var item = stackView.push(Qt.resolvedUrl("EditTask.qml"))
+            function getNewTask(newTitle, newDate, newNote) {
+                item.exit.disconnect(getNewTask);
+                addNewTask(newTitle, newDate, newNote)
+            }
+            item.exit.connect(getNewTask);
+        }
         background: Rectangle {
             radius: Theme.radius
         }

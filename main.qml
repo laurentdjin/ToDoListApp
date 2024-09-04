@@ -40,12 +40,4 @@ ApplicationWindow  {
             NumberAnimation { property: "opacity"; from: 1; to: 0; duration: 200 }
         }
     }
-
-    function addTask() {
-        if (taskInput.text !== "") {
-            let currentDate = new Date().toLocaleDateString(Qt.locale("en_US"), Locale.LongFormat)
-            todayTaskModel.append({"task": taskInput.text, "completed": false, "date": currentDate})
-            taskInput.text = ""
-        }
-    }
 }

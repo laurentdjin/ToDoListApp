@@ -91,5 +91,5 @@ Page {
     /*
       * @brief Signal handler for when the back button is clicked.
     */
-    backButton.onClicked: themePage.stackView.pop()
+    backButton.onClicked: stackView.pop()
 }

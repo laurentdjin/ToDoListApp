@@ -12,6 +12,11 @@ Page {
         backButton.onClicked: stackView.pop(null)
     }
 
+    Rectangle {
+        anchors.fill: parent
+        color: Theme.backgroundColor
+    }
+
     /**
       * @brief List of all application options
       */
@@ -71,10 +76,11 @@ Page {
                 MouseArea {
                     anchors.fill: parent
                     hoverEnabled: true
-                    onEntered: { parent.opacity = Theme.opacity}
-                    onExited: { parent.opacity = 1.0}
+                    onEntered: { settingsItem.opacity = Theme.opacity}
+                    onExited: { settingsItem.opacity = 1.0}
                 }
             }
+
 
             /**
               * @brief Add arrow on item
@@ -98,11 +104,11 @@ Page {
                         console.log("Theme")
                         stackView.push(Qt.resolvedUrl("SwitchTheme.qml"))
                     }
-                    // else if (model.page === "Tasks") {
-                    //     console.log("Tasks")
-                    //     stackView.push(Qt.resolvedUrl("RemoveTasks.qml"))
-                    // }
-                else if (model.page === "MaxTasks") {
+                    else if (model.page === "Tasks") {
+                        console.log("Tasks")
+                        stackView.push(Qt.resolvedUrl("RemoveDone.qml"))
+                    }
+                    else if (model.page === "MaxTasks") {
                         console.log("MaxTasks")
                         stackView.push(Qt.resolvedUrl("MaxTasksEdit.qml"))
                     } else if (model.page === "FontSize") {
@@ -111,7 +117,6 @@ Page {
                     }
                 }
             }
-
         }
     }
 }
