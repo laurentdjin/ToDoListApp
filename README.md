@@ -22,7 +22,6 @@ This is a Qt C++ desktop application that allows user to manage tasks effectivel
 - Delete Done Tasks
 
 
-
 ### Project Structure
 
 The project is built using:
@@ -30,11 +29,9 @@ Qt Version: 6.7.2
 - Frontend:
   - QML
   - Qt Creator
-- Backend:
 
 ### Project Management
-- Link to JIRA -> [jira](https://laurentjin.atlassian.net/jira/software/c/projects/TODO/boards/7)
-1- Class Diagram  
+1- Link to JIRA -> [jira](https://laurentjin.atlassian.net/jira/software/c/projects/TODO/boards/7)
 ![UML](screen/jira1.png)
 2- Use Case Diagram  
 ![USECASE](screen/jira2.png)
@@ -85,5 +82,5 @@ This project was created by:
 - [Mouhsine]
 
 ### Submitted to:
-- Mr. Noah  
+- Mr. Noah Saintonge 
   All rights reserved © 2024 - Datascientest
