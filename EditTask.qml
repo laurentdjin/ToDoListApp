@@ -344,6 +344,7 @@ Page {
         }
         CustomCalendar {
             id: calendar
+            validSelectedDate: edit ? editDate : new Date(0)
             visible: false
             anchors.horizontalCenter: parent.horizontalCenter
             y : 20
