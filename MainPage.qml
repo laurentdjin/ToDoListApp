@@ -357,16 +357,6 @@ Page {
                                 font.pixelSize: Theme.txtSize
                                 color: Theme.foregroundColor
                                 opacity: model.completed ? 0.5 : 1.0
-                            }
-                            Text {
-                                text: model.date.toLocaleDateString(Qt.locale("en_US"), Locale.LongFormat)
-                                font.pixelSize: Theme.txtSize
-                                color: "gray"
-                            }
-                            Text {
-                                text: model.date.toLocaleTimeString(Qt.locale("en_US"), Locale.ShortFormat)
-                                font.pixelSize: Theme.txtSize
-                                color: "gray"
                                 /**
                                  * @brief Area allowing user to redirect user on the edit page
                                  */
@@ -385,6 +375,16 @@ Page {
                                         item.exit.connect(getChange);
                                     }
                                 }
+                            }
+                            Text {
+                                text: model.date.toLocaleDateString(Qt.locale("en_US"), Locale.LongFormat)
+                                font.pixelSize: Theme.txtSize
+                                color: "gray"
+                            }
+                            Text {
+                                text: model.date.toLocaleTimeString(Qt.locale("en_US"), Locale.ShortFormat)
+                                font.pixelSize: Theme.txtSize
+                                color: "gray"
                             }
                         }
                     }
