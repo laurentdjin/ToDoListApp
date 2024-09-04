@@ -16,3 +16,4 @@ QtObject {
     property int maxTasksNumber : 10
     property bool removeDoneTasks: false
 }
+

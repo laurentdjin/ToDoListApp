@@ -1,12 +1,14 @@
+/*!
+   \file FontSizeEdit.qml
+   \brief The font page allows users to adjust the font size.
+*/
 
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 import "."
 
-/*
-  * @brief The font page allows users to adjust the font size.
-*/
+
 Page {
     id: fontPage
 
@@ -105,7 +107,7 @@ Page {
 
         Timer {
             id: inputTimer
-            interval: 1500 // 500 ms delay to simulate "finished" typing
+            interval: 1500 // 1500 ms delay to simulate "finished" typing
             repeat: false
             onTriggered: {
                 var newValue = parseInt(txt.text);
@@ -151,7 +153,7 @@ Page {
                 }
             }
 
-            // Automatically close the popup after a few seconds
+            // Automatically close the popup after 2 seconds
             Timer {
                 interval: 2000 // 2 seconds
                 running: invalidInputPopup.visible
