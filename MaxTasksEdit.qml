@@ -16,8 +16,6 @@ Page {
     */
     property alias backButton: comBar.backButton
 
-    topPadding: 12
-
     /*
       * @brief Header bar for the page, displaying the title and back button.
     */
