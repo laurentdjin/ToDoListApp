@@ -42,7 +42,6 @@ Page {
                 text: model.name
                 checked: Theme.lightTheme
 
-
                 /*!
                     \class Rectangleeeee
                     \brief Signal handler for when the switch is clicked..
