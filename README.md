@@ -9,7 +9,7 @@
 - [Team](#team)
 
 ### Introduction
-This is a Qt C++ desktop application that allows users to manage tasks effectively. Users can create, edit, delete tasks, and change the app parametres based on many options.
+This is a Qt C++ desktop application that allows user to manage tasks effectively. User can create, edit, delete tasks, and change the app parameter based on many options.
 
 ### Project Features
 - Create tasks (Add new tasks with a title and description)
@@ -37,21 +37,21 @@ Qt Version: 6.7.2
 ![UML](screen/ClassDiagram.png)
 2- Use Case Diagram  
 ![USECASE](screen/UseCase.png)
-3- Applicattion MainPage   
+3- Application MainPage   
 
 4- Calendar Edit
 
 5- Task Edit
 
-6- Application Config pricipal Menu
+6- Application Config Main Menu
 
 7- Application Theme setting
 
-8- Application font setting
+8- Application Font setting
 
-9- Application max task setting
+9- Application Max tasks setting
 
-10- Application remove done tasks setting
+10- Application remove Done tasks setting
   
 
 
