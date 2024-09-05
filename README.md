@@ -74,7 +74,7 @@ Qt Version: 6.7.2
 
 This project was created by:
 
-- [Laurent]
+- [Laurent (Project Leader)]
 - [Bryan]
 - [Noémie]
 - [Mouhsine]
